@@ -13,7 +13,14 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                roboto: ['Roboto Slab']
             },
+            colors: {
+                'biru': '#21244d',
+                'gold': '#ECBC15',
+                'birmud': '#50a8ea',
+                'abu': '#9195a0'
+            }
         },
     },
 

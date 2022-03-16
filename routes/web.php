@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\AndalalinControllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::get('/andal', [AndalalinControllers::class, 'index'])->name('andal.index');
+Route::post('/andal', [AndalalinControllers::class, 'store']);
+Route::put('/andal/{id}', [AndalalinControllers::class, 'update']);
+Route::get('/andal/{id}/edit', [AndalalinControllers::class, 'edit']);
