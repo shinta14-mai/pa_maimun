@@ -1,10 +1,30 @@
 <template>
   <Head title="Register" />
 
-  <div class="bg-stone-50">
-    <div class="max-w-full h-screen p-2">
-      <div class="md:grid md:gap-4 md:grid-cols-2 md:justify-center">
-        <jet-authentication-card>
+  <div class="h-screen flex">
+    <div
+      class="
+        sm:flex
+        sm:w-1/2
+        sm:bg-gradient-to-tr
+        sm:from-blue-800
+        sm:to-biru
+        sm:i
+        sm:justify-around
+        sm:items-center
+        hidden
+      "
+    >
+      <div>
+        <h1 class="text-white font-bold text-4xl mx-8">Daftar</h1>
+        <p class="text-white mt-1 mx-8">
+          Aplikasi Pengajuan Analisis Dampak Lalu Lintas Dinas Perhubungan
+          Kabupaten Banyuwangi
+        </p>
+      </div>
+    </div>
+    <div class="w-9/12 justify-center items-center bg-slate-50 mx-auto">
+      <jet-authentication-card>
           <template #logo>
             <jet-authentication-card-logo />
           </template>
@@ -121,10 +141,6 @@
             </div>
           </form>
         </jet-authentication-card>
-        <div class="bg-biru shadow-black shadow-sm rounded rounded-r-2xl">
-          <img src="/components/header.png" class="mt-20 mx-auto" />
-        </div>
-      </div>
     </div>
   </div>
 </template>

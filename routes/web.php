@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AndalalinControllers;
+use App\Http\Controllers\PemohonControllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::get('/info', [PemohonControllers::class, 'info'])->name('info');
 
 Route::get('/andal', [AndalalinControllers::class, 'index'])->name('andal.index');
 Route::post('/andal', [AndalalinControllers::class, 'store']);

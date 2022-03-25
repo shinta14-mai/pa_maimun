@@ -1,76 +1,92 @@
 <template>
   <Head title="Log in" />
 
-  <div class="bg-stone-50">
-    <div class="max-w-full h-screen p-2">
-      <div class="md:grid md:gap-4 md:grid-cols-2 md:justify-center">
-        <jet-authentication-card>
-          <template #logo>
-            <jet-authentication-card-logo />
-          </template>
+  <!-- component -->
+  <div class="h-screen flex">
+    <div
+      class="
+        sm:flex
+        sm:w-1/2
+        sm:bg-gradient-to-tr
+        sm:from-blue-800
+        sm:to-biru
+        sm:i
+        sm:justify-around
+        sm:items-center
+        hidden
+      "
+    >
+      <div>
+        <h1 class="text-white font-bold text-4xl mx-8">Selamat Datang</h1>
+        <p class="text-white mt-1 mx-8">
+          Aplikasi Pengajuan Analisis Dampak Lalu Lintas Dinas Perhubungan
+          Kabupaten Banyuwangi
+        </p>
+      </div>
+    </div>
+    <div class="w-9/12 justify-center items-center bg-slate-50 mx-auto">
+      <jet-authentication-card>
+        <template #logo>
+          <jet-authentication-card-logo />
+        </template>
 
-          <jet-validation-errors class="mb-4" />
+        <jet-validation-errors class="mb-4" />
 
-          <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+          {{ status }}
+        </div>
+
+        <form @submit.prevent="submit">
+          <div>
+            <jet-label for="email" value="Email" />
+            <jet-input
+              id="email"
+              type="email"
+              class="mt-1 block w-full"
+              v-model="form.email"
+              required
+              autofocus
+            />
           </div>
 
-          <form @submit.prevent="submit">
-            <div>
-              <jet-label for="email" value="Email" />
-              <jet-input
-                id="email"
-                type="email"
-                class="mt-1 block w-full"
-                v-model="form.email"
-                required
-                autofocus
-              />
-            </div>
+          <div class="mt-4">
+            <jet-label for="password" value="Password" />
+            <jet-input
+              id="password"
+              type="password"
+              class="mt-1 block w-full"
+              v-model="form.password"
+              required
+              autocomplete="current-password"
+            />
+          </div>
 
-            <div class="mt-4">
-              <jet-label for="password" value="Password" />
-              <jet-input
-                id="password"
-                type="password"
-                class="mt-1 block w-full"
-                v-model="form.password"
-                required
-                autocomplete="current-password"
-              />
-            </div>
+          <div class="block mt-4">
+            <label class="flex items-center">
+              <jet-checkbox name="remember" v-model:checked="form.remember" />
+              <span class="ml-2 text-sm text-gray-600">Ingat Saya</span>
+            </label>
+          </div>
 
-            <div class="block mt-4">
-              <label class="flex items-center">
-                <jet-checkbox name="remember" v-model:checked="form.remember" />
-                <span class="ml-2 text-sm text-gray-600">Ingat Saya</span>
-              </label>
-            </div>
+          <div class="flex items-center justify-end mt-4">
+            <Link
+              v-if="canResetPassword"
+              :href="route('password.request')"
+              class="underline text-sm text-gray-600 hover:text-gray-900"
+            >
+              Lupa password?
+            </Link>
 
-            <div class="flex items-center justify-end mt-4">
-              <Link
-                v-if="canResetPassword"
-                :href="route('password.request')"
-                class="underline text-sm text-gray-600 hover:text-gray-900"
-              >
-                Lupa password?
-              </Link>
-
-              <jet-button
-                class="ml-4"
-                :class="{ 'opacity-25': form.processing }"
-                :disabled="form.processing"
-              >
-                Masuk
-              </jet-button>
-            </div>
-          </form>
-        </jet-authentication-card>
-
-        <div class="bg-biru shadow-black shadow-sm rounded rounded-r-2xl">
-          <img src="/components/banner.png" class="w-3/4 mx-auto" />
-        </div>
-      </div>
+            <jet-button
+              class="ml-4"
+              :class="{ 'opacity-25': form.processing }"
+              :disabled="form.processing"
+            >
+              Masuk
+            </jet-button>
+          </div>
+        </form>
+      </jet-authentication-card>
     </div>
   </div>
 </template>

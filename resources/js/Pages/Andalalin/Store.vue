@@ -8,7 +8,7 @@
           <span class="block xl:inline text-black">Nomor Registrasi Anda : {{ code }} </span>
           <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-center">
             <div class="rounded-md shadow">
-              <a href="/" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-900 hover:bg-blue-700 md:py-2 md:text-lg md:px-8">
+              <a href="/dashboard" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-900 hover:bg-blue-700 md:py-2 md:text-lg md:px-8">
                 Home
               </a>
             </div>
