@@ -68,7 +68,7 @@
                       focus:ring-slate-200
                       focus:ring-offset-2
                       focus:ring-offset-slate-50
-                      text-white
+                      text-slate-50
                       h-8
                       px-6
                       rounded-md
@@ -153,7 +153,7 @@
               focus:ring-slate-400
               focus:ring-offset-2
               focus:ring-offset-slate-50
-              text-white
+              text-slate-50
               font-semibold
               h-12
               px-6
@@ -275,8 +275,7 @@
               target="_blank"
                 class="
                   bg-slate-900
-                  text-white
-                  block
+                  text-slate-50
                   rounded-sm
                   font-bold
                   py-6
@@ -362,8 +361,7 @@
               target="_blank"
                 class="
                   bg-slate-900
-                  text-white
-                  block
+                  text-slate-50
                   rounded-sm
                   font-bold
                   py-6
@@ -515,8 +513,7 @@
               target="_blank"
                 class="
                   bg-slate-900
-                  text-white
-                  block
+                  text-slate-50
                   rounded-sm
                   font-bold
                   py-6

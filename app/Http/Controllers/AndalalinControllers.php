@@ -112,7 +112,7 @@ class AndalalinControllers extends Controller
             $this->generateUniqueCode();
         }
 
-        $codeR = 'Andal/'.$code.'/'.date("Y/m/d");
+        $codeR = 'RA/'.$code.'/'.date("Y/m/d");
         $upload->kode = $codeR;
 
         $file1->move(public_path('file_pemohon'),$surat_pemohon);
