@@ -14,12 +14,10 @@ class RekomteknisControllers extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return Inertia::render('Rekom Teknis/Index', [
-            'andal' => Rekomtek::when($request->term, function($query, $term,){
-                $query->where('kode', 'LIKE', '%'.$term.'%');
-            })->orderBy('id', 'DESC')->paginate(),
+        return Inertia::render('Admin/DashboardRt', [
+            'rt' => Rekomtek::orderBy('id', 'DESC')->get()
         ]);
     }
 

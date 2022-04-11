@@ -14,12 +14,10 @@ class StandarteknisControllers extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return Inertia::render('Rekom Teknis/Index', [
-            'andal' => Standartek::when($request->term, function($query, $term,){
-                $query->where('kode', 'LIKE', '%'.$term.'%');
-            })->orderBy('id', 'DESC')->paginate(),
+        return Inertia::render('Admin/DashboardSt', [
+            'st' => Standartek::orderBy('id', 'DESC')->get()
         ]);
     }
 
@@ -127,7 +125,10 @@ class StandarteknisControllers extends Controller
      */
     public function show($id)
     {
-        return Inertia::render('Andalalin/Show');
+        $user = Standartek::find($id);
+        return Inertia::render('StandarTeknis/Show', [
+            'st' => $user
+        ]);
     }
 
     /**
@@ -138,9 +139,9 @@ class StandarteknisControllers extends Controller
      */
     public function edit($id)
     {
-        $andal = Standartek::find($id);
-        return Inertia::render('Andalalin/Edit', [
-            'andal' => $andal
+        $user = Standartek::find($id);
+        return Inertia::render('StandarTeknis/Edit', [
+            'st' => $user
         ]);
     }
 
@@ -149,54 +150,20 @@ class StandarteknisControllers extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param  \App\Models\Standartek  $standartek
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_pemohon' => 'required',
-            'alamat_pemohon' => 'required',
-            'no_tlp' => 'required',
-            'jenis_usaha' => 'required',
-            'alamat_usaha' => 'required',
-            'luas_lahan' => 'required',
-            'luas_bangunan' => 'required',
-            'status_lahan' => 'required',
-            'kapasitas' => 'required',
-            'email_pemohon' => 'required',
-            // 'surat_pemohon' => 'required',
-            // 'ktp' => 'required',
-            // 'sertifikat_tanah' => 'required',
-            // 'ktr' => 'required',
-            // 'rencana_tapak' => 'required',
-            // 'desain_bangunan' => 'required',
-            // 'company_profile' => 'required',
-            // 'sertifikat_penyusun' => 'required',
-            // 'dokumen_andalalin' => 'required',
+            'verifikasi' => 'required',
         ]);
 
         Standartek::where('id', $id)->update([
-            'nama_pemohon' => $request->nama_pemohon,
-            'alamat_pemohon' => $request->alamat_pemohon,
-            'no_tlp' => $request->no_tlp,
-            'jenis_usaha' => $request->jenis_usaha,
-            'alamat_usaha' => $request->alamat_usaha,
-            'luas_lahan' => $request->luas_lahan,
-            'luas_bangunan' => $request->luas_bangunan,
-            'status_lahan' => $request->status_lahan,
-            'kapasitas' => $request->kapasitas,
-            'email_pemohon' => $request->email_pemohon,
-            'surat_pemohon' => $request->surat_pemohon,
-            'ktp' => $request->ktp,
-            'sertifikat_tanah' => $request->sertifikat_tanah,
-            'ktr' => $request->ktr,
-            'desain_bangunan' => $request->desain_bangunan,
-            'company_profile' => $request->company_profile,
-            'sertifikat_penyusun' => $request->sertifikat_penyusun,
-            'dokumen_andalalin' => $request->dokumen_andalalin,
+            'verifikasi' => $request->verifikasi,
         ]);
 
-        return Redirect::route('andal.index');
+        return Redirect::route('st.index');
     }
 
     /**

@@ -182,7 +182,6 @@
                     type="email"
                     class="mt-1 block w-full"
                     v-model="andal.email_pemohon"
-                    required
                     autofocus
                   />
                 </div>
@@ -270,7 +269,6 @@
                     type="file"
                     class="mt-1 block w-full"
                     @input="andal.company_profile = $event.target.files[0]"
-                    required
                     autofocus
                   />
                 </div>
@@ -285,7 +283,6 @@
                     type="file"
                     class="mt-1 block w-full"
                     @input="andal.sertifikat_penyusun = $event.target.files[0]"
-                    required
                     autofocus
                   />
                 </div>
@@ -300,7 +297,6 @@
                     type="file"
                     class="mt-1 block w-full"
                     @input="andal.dokumen_andalalin = $event.target.files[0]"
-                    required
                     autofocus
                   />
                 </div>

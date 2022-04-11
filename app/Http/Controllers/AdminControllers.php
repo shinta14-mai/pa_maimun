@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Andalalin;
+use App\Models\Rekomtek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
-class PemohonControllers extends Controller
+class AdminControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,40 +19,9 @@ class PemohonControllers extends Controller
 
     public function index()
     {
-        $role = Auth::user()->role;
-
-        if($role == 'admin')
-        {
-            return Inertia::render('Admin/DashboardAndal', [
-                'andal' => Andalalin::orderBy('id', 'DESC')->get()
-            ]);
-        }
-        else
-        {
-            return Inertia::render('Dashboard');
-        }
-    }
-
-    public function info()
-    {
-        return Inertia::render('Info');
-    }
-
-    public function bp()
-    {
-        return Inertia::render('BuatPengajuan');
-    }
-
-    public function index2()
-    {
-        return Inertia::render('Info', [
-            'andal' => Andalalin::orderBy('id', 'DESC')->get()
+        return Inertia::render('Admin/DashboardRt', [
+            'andal' => Rekomtek::orderBy('id', 'DESC')->get()
         ]);
-    }
-
-    public function index3()
-    {
-
     }
 
     /**

@@ -1,10 +1,4 @@
 <template>
-    <app-layout title="Profile">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Profile
-            </h2>
-        </template>
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
@@ -33,9 +27,37 @@
 
                     <delete-user-form class="mt-10 sm:mt-0" />
                 </template>
+
+                <div class="mt-2 flex justify-end text-base">
+          <Link
+            class="
+              bg-slate-900
+              hover:bg-slate-700
+              focus:outline-none
+              focus:ring-2
+              focus:ring-slate-400
+              focus:ring-offset-2
+              focus:ring-offset-slate-50
+              text-white
+              font-semibold
+              h-12
+              px-6
+              rounded-lg
+              w-full
+              flex
+              items-center
+              justify-center
+              sm:w-auto
+              text-xs
+              md:text-base
+              mt-10
+            "
+            href="/dashboard"
+            >Kembali ke Dashboard</Link
+          >
+        </div>
             </div>
         </div>
-    </app-layout>
 </template>
 
 <script>
@@ -47,6 +69,7 @@
     import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue'
     import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue'
     import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue'
+    import { Link } from "@inertiajs/inertia-vue3"
 
     export default defineComponent({
         props: ['sessions'],
@@ -59,6 +82,7 @@
             TwoFactorAuthenticationForm,
             UpdatePasswordForm,
             UpdateProfileInformationForm,
+            Link,
         },
     })
 </script>
