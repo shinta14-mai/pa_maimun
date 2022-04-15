@@ -1,29 +1,84 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <app-layout title="Admin Dashboard">
-    <div class="py-4">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-2">
-        <div class="bg-slate-50 shadow-xl sm:rounded-lg">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-2xl mx-auto py-2 sm:py-6 lg:py-16 lg:max-w-none">
-              <form @submit.prevent="submit" enctype="multipart/form-data">
-                <div class="md:grid md:gap-4 md:grid-cols-2 md:justify-center">
-                  <div class="bg-slate-100 rounded-lg shadow-xl">
-                    <div class="py-8 px-10">
-                      <p
-                        class="
-                          text-xl
-                          bold
-                          text-slate-900
-                          font-extrabold font-roboto
-                          leading-6
-                          text-center
-                          uppercase
-                        "
-                      >
-                        edit status verifikasi
-                      </p>
-                      <div class="mt-4">
-                        <jet-label for="verifikasi" value="Ubah Status" />
+  <TransitionRoot as="template" :show="open">
+    <Dialog
+      as="div"
+      class="fixed z-10 inset-0 overflow-y-auto"
+      @close="open = false"
+    >
+      <div
+        class="
+          flex
+          items-end
+          justify-center
+          min-h-screen
+          pt-4
+          px-4
+          pb-20
+          text-center
+          sm:block sm:p-0
+        "
+      >
+        <TransitionChild
+          as="template"
+          enter="ease-out duration-300"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="ease-in duration-200"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
+        >
+          <DialogOverlay
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          />
+        </TransitionChild>
+
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span
+          class="hidden sm:inline-block sm:align-middle sm:h-screen"
+          aria-hidden="true"
+          >&#8203;</span
+        >
+        <TransitionChild
+          as="template"
+          enter="ease-out duration-300"
+          enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          enter-to="opacity-100 translate-y-0 sm:scale-100"
+          leave="ease-in duration-200"
+          leave-from="opacity-100 translate-y-0 sm:scale-100"
+          leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        >
+          <div
+            class="
+              relative
+              my-auto
+              inline-block
+              align-bottom
+              bg-slate-50
+              rounded-lg
+              text-left
+              overflow-hidden
+              shadow-xl
+              transform
+              transition-all
+              sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
+            "
+          >
+            <div class="bg-white px-4 pt-5 pb-4 mx-auto sm:p-6 sm:pb-4">
+                <div class="mt-3 mx-auto text-center sm:mt-0">
+                  <DialogTitle
+                    as="h3"
+                    class="text-lg leading-6 font-extrabold text-slate-900 uppercase font-roboto"
+                  >
+                    Edit Status Verifikasi
+                  </DialogTitle>
+                  <div class="mt-2">
+                    <form
+                      @submit.prevent="submit"
+                      enctype="multipart/form-data"
+                    >
+                      <div class="mt-6">
+                        <jet-label for="verifikasi" class="font-bold" value="Ubah Status" />
                         <select
                           class="
                             form-control
@@ -44,130 +99,77 @@
                           <option value="Ditolak">Ditolak</option>
                         </select>
                       </div>
-
-                      <div class="flex items-center justify-end mt-4">
-                        <button
-                          type="submit"
-                          class="
-                            inline-flex
-                            justify-center
-                            py-2
-                            px-4
-                            border border-transparent
-                            shadow-sm
-                            text-sm
-                            font-medium
-                            rounded-md
-                            text-white
-                            bg-biru
-                            hover:bg-blue-700
-                            focus:outline-none
-                            focus:ring-2
-                            focus:ring-offset-2
-                            focus:ring-blue-500
-                            disabled:bg-slate-900
-                          "
-                        >
-                          Simpan
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bg-slate-100 rounded-lg shadow-xl">
-                    <div class="py-8 px-10">
-                      <p
+                      <button
+                        type="submit"
                         class="
-                          text-xl
-                          bold
-                          text-slate-900
-                          font-extrabold font-roboto
-                          leading-6
-                          text-center
-                          uppercase
+                        mt-10
+                          inline-flex
+                          justify-center
+                          py-2
+                          px-4
+                          border border-transparent
+                          shadow-sm
+                          text-sm
+                          font-medium
+                          rounded-md
+                          text-white
+                          bg-biru
+                          hover:bg-blue-700
+                          focus:outline-none
+                          focus:ring-2
+                          focus:ring-offset-2
+                          focus:ring-blue-500
+                          disabled:bg-slate-900
                         "
                       >
-                        edit jadwal tinjau lapang
-                      </p>
-                      <div class="mt-4">
-                        <jet-label for="tgl_tl" value="Atur Tanggal" />
-                        <jet-input
-                          id="tgl_tl"
-                          type="date"
-                          class="mt-1 block w-1/2"
-                          v-model="form.tgl_tl"
-                          autofocus
-                        />
-                      </div>
-
-                      <div class="mt-4">
-                        <jet-label for="waktu_tl" value="Atur Waktu" />
-                        <jet-input
-                          id="waktu_tl"
-                          type="time"
-                          class="mt-1 block w-1/2"
-                          v-model="form.waktu_tl"
-                          autofocus
-                        />
-                      </div>
-
-                      <div class="flex items-center justify-end mt-4">
-                        <button
-                          type="submit"
-                          class="
-                            inline-flex
-                            justify-center
-                            py-2
-                            px-4
-                            border border-transparent
-                            shadow-sm
-                            text-sm
-                            font-medium
-                            rounded-md
-                            text-white
-                            bg-biru
-                            hover:bg-blue-700
-                            focus:outline-none
-                            focus:ring-2
-                            focus:ring-offset-2
-                            focus:ring-blue-500
-                            disabled:bg-slate-900
-                          "
-                        >
-                          Simpan
-                        </button>
-                      </div>
-                    </div>
+                        Simpan
+                      </button>
+                    </form>
                   </div>
                 </div>
-              </form>
             </div>
           </div>
-        </div>
+        </TransitionChild>
       </div>
-    </div>
-  </app-layout>
+    </Dialog>
+  </TransitionRoot>
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import AppLayout from "@/Layouts/AppLayout.vue";
-import { Link } from "@inertiajs/inertia-vue3";
+import { ref } from "vue";
+import {
+  Dialog,
+  DialogOverlay,
+  DialogTitle,
+  TransitionChild,
+  TransitionRoot,
+} from "@headlessui/vue";
 import JetInput from "@/Jetstream/Input.vue";
 import JetLabel from "@/Jetstream/Label.vue";
+// import { ExclamationIcon } from '@heroicons/vue/outline'
 
-export default defineComponent({
+export default {
   components: {
-    AppLayout,
-    Link,
+    Dialog,
+    DialogOverlay,
+    DialogTitle,
+    TransitionChild,
+    TransitionRoot,
     JetInput,
     JetLabel,
+    // ExclamationIcon,
+  },
+  setup() {
+    const open = ref(true);
+
+    return {
+      open,
+    };
   },
   data() {
     return {
       form: {
         verifikasi: this.st.verifikasi,
-        tgl_tl: this.st.tgl_tl,
-        waktu_tl: this.st.waktu_tl,
       },
     };
   },
@@ -179,5 +181,5 @@ export default defineComponent({
       this.$inertia.put("/st/" + this.st.id, this.form);
     },
   },
-});
+};
 </script>

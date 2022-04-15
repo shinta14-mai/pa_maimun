@@ -191,7 +191,8 @@
                             class="
                               px-2
                               py-1
-                              ml-2
+                              sm:ml-2
+                              mt-2
                               inline-flex
                               text-sm
                               leading-5

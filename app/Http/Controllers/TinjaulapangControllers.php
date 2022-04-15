@@ -2,46 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Andalalin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Standartek;
+use App\Models\TinjauLapang;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Redirect;
 
-class PemohonControllers extends Controller
+class TinjaulapangControllers extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $role = Auth::user()->role;
-
-        if($role == 'admin')
-        {
-            return Inertia::render('Admin/DashboardAndal', [
-                'andal' => Andalalin::orderBy('id', 'DESC')->get()
-            ]);
-        }
-        else
-        {
-            return Inertia::render('Dashboard');
-        }
-    }
-
-    public function index2()
-    {
-        return Inertia::render('Info', [
-            'andal' => Andalalin::orderBy('id', 'DESC')->get()
+        return Inertia::render('Admin/DashboardSt', [
+            'st' => Standartek::orderBy('id', 'DESC')->get()
         ]);
-    }
-
-    public function index3()
-    {
-
     }
 
     /**
@@ -51,7 +28,7 @@ class PemohonControllers extends Controller
      */
     public function create()
     {
-        return Inertia::render('Andalalin/Create');
+        //
     }
 
     /**
@@ -62,7 +39,13 @@ class PemohonControllers extends Controller
      */
     public function store(Request $request)
     {
-
+        $upload = new TinjauLapang();
+        $upload->tgl_tl = $request->tgl_tl;
+        $upload->waktu_tl = $request->waktu_tl;
+        $upload->save();
+        return Inertia::render('Admin/DashboardSt', [
+            'st' => Standartek::orderBy('id', 'DESC')->get()
+        ]);
     }
 
     /**
@@ -73,7 +56,7 @@ class PemohonControllers extends Controller
      */
     public function show($id)
     {
-        return Inertia::render('Andalalin/Show');
+        //
     }
 
     /**
@@ -84,7 +67,7 @@ class PemohonControllers extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -96,7 +79,7 @@ class PemohonControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**

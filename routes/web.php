@@ -7,7 +7,9 @@ use App\Http\Controllers\AndalalinControllers;
 use App\Http\Controllers\RekomteknisControllers;
 use App\Http\Controllers\StandarteknisControllers;
 use App\Http\Controllers\PemohonControllers;
-use App\Http\Controllers\AdminControllers;
+use App\Http\Controllers\PengajuanControllers;
+use App\Http\Controllers\InfoControllers;
+use App\Http\Controllers\TinjaulapangControllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +37,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 // Route::get('redirects', [PemohonControllers::class, 'index'])->name('redirects');
 
+Route::middleware(['auth:sanctum', 'verified'])->resource('info', InfoControllers::class);
+Route::middleware(['auth:sanctum', 'verified'])->resource('bp', PengajuanControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('andal', AndalalinControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('rt', RekomteknisControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('st', StandarteknisControllers::class);
+Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TinjaulapangControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('redirects', PemohonControllers::class);
 
-Route::get('/info', [PemohonControllers::class, 'index2'])->name('info');
-Route::get('/buat-pengajuan', [PemohonControllers::class, 'bp'])->name('buat-pengajuan');
+// Route::get('/info', [PemohonControllers::class, 'index2'])->name('info');
+// Route::get('/buat-pengajuan', [PemohonControllers::class, 'bp'])->name('buat-pengajuan');
 
 // Route::get('/st/{id}', [StandarteknisControllers::class, 'show'])->name('st.show');
 

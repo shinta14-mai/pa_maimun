@@ -24,7 +24,7 @@
         </p>
       </div>
     </div>
-    <div class="w-9/12 justify-center items-center bg-slate-50 mx-auto">
+    <div class="w-9/12 justify-center items-center bg-slate-50 mx-auto my-auto">
       <jet-authentication-card>
         <template #logo>
           <jet-authentication-card-logo />

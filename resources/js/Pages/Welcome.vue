@@ -21,56 +21,27 @@
           leading-6
         "
       >
-        <img src="/components/logo-dishub.png" class="w-14 h-14 block" />
-        <h1 class="sm:flex sm:ml-36 hidden">Dinas Perhubungan Kabupaten Banyuwangi</h1>
+        <img src="/components/logo-dishub.png" class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 block" />
+        <h1 class="md:flex md:mx-auto hidden">Dinas Perhubungan Kabupaten Banyuwangi</h1>
         <div class="flex items-center">
-          <div class="-my-1 ml-2 -mr-1 md:hidden">
-            <button
-              type="button"
-              class="
-                text-slate-500
-                w-8
-                h-8
-                flex
-                items-center
-                justify-center
-                hover:text-slate-600
-              "
-            >
-              <span class="sr-only">Navigation</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="hidden md:flex items-center">
+          <div class="md:flex items-center">
             <nav>
-              <ul class="flex items-center space-x-8">
+              <ul class="flex items-center space-x-2 sm:space-x-6 md:space-x-8">
                 <li>
                   <a
                     class="
-                      bg-slate-700
-                      hover:bg-slate-400
+                      bg-slate-900
+                      hover:bg-slate-700
                       focus:outline-none
                       focus:ring-2
-                      focus:ring-slate-200
+                      focus:ring-slate-400
                       focus:ring-offset-2
                       focus:ring-offset-slate-50
                       text-slate-50
-                      h-8
-                      px-6
+                      sm:h-8
+                      sm:px-6
+                      h-6
+                      px-4
                       rounded-md
                       w-full
                       flex
@@ -92,8 +63,10 @@
                       focus:ring-slate-500
                       focus:ring-offset-2
                       focus:ring-offset-slate-700
-                      h-8
-                      px-6
+                      sm:h-8
+                      sm:px-6
+                      h-6
+                      px-4
                       rounded-md
                       w-full
                       flex
