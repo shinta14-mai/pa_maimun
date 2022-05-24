@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Andalalin;
 use Illuminate\Http\Request;
 use App\Models\Standartek;
 use App\Models\TinjauLapang;
@@ -16,9 +17,7 @@ class TinjaulapangControllers extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/DashboardSt', [
-            'st' => Standartek::orderBy('id', 'DESC')->get()
-        ]);
+        return Inertia::render('Tinjaulapang/Index');
     }
 
     /**
@@ -44,7 +43,7 @@ class TinjaulapangControllers extends Controller
         $upload->waktu_tl = $request->waktu_tl;
         $upload->save();
         return Inertia::render('Admin/DashboardSt', [
-            'st' => Standartek::orderBy('id', 'DESC')->get()
+            'st' => Andalalin::orderBy('id', 'DESC')->get()
         ]);
     }
 

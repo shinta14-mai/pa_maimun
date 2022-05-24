@@ -16,11 +16,7 @@ class AndalalinControllers extends Controller
      */
     public function index(Request $request)
     {
-        return Inertia::render('Andalalin/Index', [
-            'andal' => Andalalin::when($request->term, function($query, $term,){
-                $query->where('kode', 'LIKE', '%'.$term.'%');
-            })->orderBy('id', 'DESC')->paginate(),
-        ]);
+
     }
 
     /**
@@ -41,66 +37,11 @@ class AndalalinControllers extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_pemohon' => 'required',
-            'alamat_pemohon' => 'required',
-            'no_tlp' => 'required',
-            'jenis_usaha' => 'required',
-            'alamat_usaha' => 'required',
-            'luas_lahan' => 'required',
-            'luas_bangunan' => 'required',
-            'status_lahan' => 'required',
-            'kapasitas' => 'required',
-            'email_pemohon' => 'required',
-
-        ]);
-
-        $file1 = $request->surat_pemohon;
-        $file2 = $request->ktp;
-        $file3 = $request->sertifikat_tanah;
-        $file4 = $request->ktr;
-        $file5 = $request->rencana_tapak;
-        $file6 = $request->desain_bangunan;
-        $file7 = $request->company_profile;
-        $file8 = $request->sertifikat_penyusun;
-        $file9 = $request->dokumen_andalalin;
-
-        $surat_pemohon = $file1->getClientOriginalName();
-        $ktp = $file2->getClientOriginalName();
-        $sertifikat_tanah = $file3->getClientOriginalName();
-        $ktr = $file4->getClientOriginalName();
-        $rencana_tapak = $file5->getClientOriginalName();
-        $desain_bangunan = $file6->getClientOriginalName();
-        $company_profile = $file7->getClientOriginalName();
-        $sertfikat_penyusun = $file8->getClientOriginalName();
-        $dokumen_andalalin = $file9->getClientOriginalName();
-
-        $upload = new Andalalin();
-        $upload->nama_pemohon = $request->nama_pemohon;
-        $upload->alamat_pemohon = $request->alamat_pemohon;
-        $upload->no_tlp = $request->no_tlp;
-        $upload->jenis_usaha = $request->jenis_usaha;
-        $upload->alamat_usaha = $request->alamat_usaha;
-        $upload->luas_lahan = $request->luas_lahan;
-        $upload->luas_bangunan = $request->luas_bangunan;
-        $upload->status_lahan = $request->status_lahan;
-        $upload->kapasitas = $request->kapasitas;
-        $upload->email_pemohon = $request->email_pemohon;
-        $upload->surat_pemohon = $surat_pemohon;
-        $upload->ktp = $ktp;
-        $upload->sertifikat_tanah = $sertifikat_tanah;
-        $upload->ktr = $ktr;
-        $upload->rencana_tapak = $rencana_tapak;
-        $upload->desain_bangunan = $desain_bangunan;
-        $upload->company_profile = $company_profile;
-        $upload->sertifikat_penyusun = $sertfikat_penyusun;
-        $upload->dokumen_andalalin = $dokumen_andalalin;
-        $upload->verifikasi = 'Diperiksa';
-
         $characters = '0123456789';
         $charactersNumber = strlen($characters);
 
         $code = '';
+        $nama_kategori = $request -> input('nama_kategori');
 
         while (strlen($code) < 4) {
             $position = rand(0, $charactersNumber - 1);
@@ -112,23 +53,46 @@ class AndalalinControllers extends Controller
             $this->generateUniqueCode();
         }
 
-        $codeR = 'RA/'.$code.'/'.date("Y/m/d");
-        $upload->kode = $codeR;
+        if($nama_kategori == 'Dokumen Andalalin'){
+            $codeR = 'RA/'.$code.'/'.date("Y/m/d");
+        }
+        elseif($nama_kategori == 'Rekomendasi Teknis'){
+            $codeR = 'RT/'.$code.'/'.date("Y/m/d");
+        }
+        elseif($nama_kategori == 'Standar Teknis'){
+            $codeR = 'ST/'.$code.'/'.date("Y/m/d");
+        }
 
-        $file1->move(public_path('file_pemohon'),$surat_pemohon);
-        $file2->move(public_path('file_pemohon'),$ktp);
-        $file3->move(public_path('file_pemohon'),$sertifikat_tanah);
-        $file4->move(public_path('file_pemohon'),$ktr);
-        $file5->move(public_path('file_pemohon'),$rencana_tapak);
-        $file6->move(public_path('file_pemohon'),$desain_bangunan);
-        $file7->move(public_path('file_pemohon'),$company_profile);
-        $file8->move(public_path('file_pemohon'),$sertfikat_penyusun);
-        $file9->move(public_path('file_pemohon'),$dokumen_andalalin);
-        $upload->save();
+        Andalalin::create([
+            'user_id' => auth()->id(),
+            'nama_kategori' => $request -> input('nama_kategori'),
+            'nama_pemohon' => $request -> input('nama_pemohon'),
+            'alamat_pemohon' => $request -> input('alamat_pemohon'),
+            'no_tlp' => $request -> input('no_tlp'),
+            'jenis_usaha' => $request -> input('jenis_usaha'),
+            'alamat_usaha' => $request -> input('alamat_usaha'),
+            'luas_lahan' => $request -> input('luas_lahan'),
+            'luas_bangunan' => $request -> input('luas_bangunan'),
+            'status_lahan' => $request -> input('status_lahan'),
+            'kapasitas' => $request -> input('kapasitas'),
+            'email_pemohon' => $request -> input('email_pemohon'),
+            'kode' => $request -> kode = $codeR,
+            'keterangan' => $request -> keterangan = 'NULL',
+            'verifikasi' => $request -> verifikasi = 'Diperiksa',
+            'surat_pemohon' => $request -> file('surat_pemohon') ? $request -> file('surat_pemohon') -> store('surat-permohonan', 'public') : null,
+            'ktp' => $request -> file('ktp') ? $request -> file('ktp') -> store('ktp', 'public') : null,
+            'sertifikat_tanah' => $request -> file('sertifikat_tanah') ? $request -> file('sertifikat_tanah') -> store('sertifikat-tanah', 'public') : null,
+            'ktr' => $request -> file('ktr') ? $request -> file('ktr') -> store('kesesuaian-tata-ruang', 'public') : null,
+            'rencana_tapak' => $request -> file('rencana_tapak') ? $request -> file('rencana_tapak') -> store('rencana-tapak', 'public') : null,
+            'desain_bangunan' => $request -> file('desain_bangunan') ? $request -> file('desain_bangunan') -> store('desain-bangunan', 'public') : null,
+            'company_profile' => $request -> file('company_profile') ? $request -> file('company_profile') -> store('company-profile', 'public') : null,
+            'sertifikat_penyusun' => $request -> file('sertifikat_penyusun') ? $request -> file('sertifikat_penyusun') -> store('sertifikat-penyusun', 'public') : null,
+            'dokumen_andalalin' => $request -> file('dokumen_andalalin') ? $request -> file('dokumen_andalalin') -> store('dokumen-andalalin', 'public') : null,
+        ]);
 
         return Inertia::render('Andalalin/Store', [
-            'code' => $codeR,
-        ]);
+                'code' => $codeR,
+            ]);
     }
 
     /**
@@ -139,7 +103,10 @@ class AndalalinControllers extends Controller
      */
     public function show($id)
     {
-        return Inertia::render('Andalalin/Show');
+        $user = Andalalin::find($id);
+        return Inertia::render('Andalalin/Show', [
+            'andal' => $user
+        ]);
     }
 
     /**
@@ -166,49 +133,14 @@ class AndalalinControllers extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_pemohon' => 'required',
-            'alamat_pemohon' => 'required',
-            'no_tlp' => 'required',
-            'jenis_usaha' => 'required',
-            'alamat_usaha' => 'required',
-            'luas_lahan' => 'required',
-            'luas_bangunan' => 'required',
-            'status_lahan' => 'required',
-            'kapasitas' => 'required',
-            'email_pemohon' => 'required',
-            // 'surat_pemohon' => 'required',
-            // 'ktp' => 'required',
-            // 'sertifikat_tanah' => 'required',
-            // 'ktr' => 'required',
-            // 'rencana_tapak' => 'required',
-            // 'desain_bangunan' => 'required',
-            // 'company_profile' => 'required',
-            // 'sertifikat_penyusun' => 'required',
-            // 'dokumen_andalalin' => 'required',
+            'verifikasi' => 'required',
         ]);
 
         Andalalin::where('id', $id)->update([
-            'nama_pemohon' => $request->nama_pemohon,
-            'alamat_pemohon' => $request->alamat_pemohon,
-            'no_tlp' => $request->no_tlp,
-            'jenis_usaha' => $request->jenis_usaha,
-            'alamat_usaha' => $request->alamat_usaha,
-            'luas_lahan' => $request->luas_lahan,
-            'luas_bangunan' => $request->luas_bangunan,
-            'status_lahan' => $request->status_lahan,
-            'kapasitas' => $request->kapasitas,
-            'email_pemohon' => $request->email_pemohon,
-            'surat_pemohon' => $request->surat_pemohon,
-            'ktp' => $request->ktp,
-            'sertifikat_tanah' => $request->sertifikat_tanah,
-            'ktr' => $request->ktr,
-            'desain_bangunan' => $request->desain_bangunan,
-            'company_profile' => $request->company_profile,
-            'sertifikat_penyusun' => $request->sertifikat_penyusun,
-            'dokumen_andalalin' => $request->dokumen_andalalin,
+            'verifikasi' => $request->verifikasi,
         ]);
 
-        return Redirect::route('andal.index');
+        return Redirect::route('redirects.index');
     }
 
     /**

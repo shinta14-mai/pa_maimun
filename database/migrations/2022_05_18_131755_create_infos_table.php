@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTinjauTable extends Migration
+class CreateInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTinjauTable extends Migration
      */
     public function up()
     {
-        Schema::create('tinjau', function (Blueprint $table) {
+        Schema::create('infos', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_tl');
-            $table->date('waktu_tl');
+            $table->string('name');
+            $table->string('file_name');
+            $table->string('mime_type');
+            $table->integer('size');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTinjauTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tinjau');
+        Schema::dropIfExists('infos');
     }
 }

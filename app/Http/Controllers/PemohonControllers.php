@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Andalalin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -19,6 +20,7 @@ class PemohonControllers extends Controller
     public function index()
     {
         $role = Auth::user()->role;
+        $andal = Andalalin::with('user')->where('user_id', Auth::user()->id)->get();
 
         if($role == 'admin')
         {
@@ -26,22 +28,19 @@ class PemohonControllers extends Controller
                 'andal' => Andalalin::orderBy('id', 'DESC')->get()
             ]);
         }
+        // elseif($jumlah == 1)
+        // {
+        //     return Inertia::render('Dashboard2', [
+        //         'andal' => Andalalin::with('user')->get()
+        //     ]);
+        // }
         else
         {
-            return Inertia::render('Dashboard');
+            // return Inertia::render('Dashboard');
+            return Inertia::render('Dashboard2', [
+                        'andal' => $andal
+                    ]);
         }
-    }
-
-    public function index2()
-    {
-        return Inertia::render('Info', [
-            'andal' => Andalalin::orderBy('id', 'DESC')->get()
-        ]);
-    }
-
-    public function index3()
-    {
-
     }
 
     /**
@@ -73,7 +72,10 @@ class PemohonControllers extends Controller
      */
     public function show($id)
     {
-        return Inertia::render('Andalalin/Show');
+        $andal = Andalalin::with('user')->where('user_id', Auth::user()->id)->get();
+        return Inertia::render('Pemohon/Show', [
+            'andal' => $andal
+        ]);
     }
 
     /**

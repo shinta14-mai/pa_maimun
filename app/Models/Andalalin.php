@@ -10,8 +10,14 @@ class Andalalin extends Model
 {
     use HasFactory, Notifiable;
 
+    public function user(){
+		return $this->belongsTo(User::class);
+	}
+
     public $table = 'andalalins';
     protected $fillable = [
+        'user_id',
+        'nama_kategori',
         'nama_pemohon',
         'alamat_pemohon',
         'no_tlp',
@@ -24,7 +30,7 @@ class Andalalin extends Model
         'email_pemohon',
         'surat_pemohon',
         'ktp',
-        'sertfikat_tanah',
+        'sertifikat_tanah',
         'ktr',
         'rencana_tapak',
         'desain_bangunan',
@@ -32,6 +38,7 @@ class Andalalin extends Model
         'sertifikat_penyusun',
         'dokumen_andalalin',
         'verifikasi',
+        'keterangan',
         'kode'
     ];
 }

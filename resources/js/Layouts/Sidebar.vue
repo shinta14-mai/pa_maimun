@@ -22,7 +22,7 @@
       class="
         overflow-y-auto overflow-x-hidden
         flex flex-col
-        justify-between
+        justify-start
         flex-grow
       "
     >
@@ -33,13 +33,13 @@
             :src="$page.props.user.profile_photo_url"
             :alt="$page.props.user.name"
           />
-          <div class="text-slate-50 font-medium text-base">
+          <div class="text-slate-50 font-medium text-base text-center mt-2">
             {{ $page.props.user.name }}
           </div>
         </jet-dropdown-link>
       </span>
 
-      <ul class="flex flex-col py-4 mb-24 space-y-1">
+      <ul class="flex flex-col py-4 space-y-1">
         <li>
           <Link
             :href="route('redirects.index')"
@@ -102,9 +102,9 @@
         </li>
         <li>
           <Link
-            :href="route('bp.index')"
+            :href="route('andal.create')"
             :class="
-              route().current('bp.*')
+              route().current('andal.*')
                 ? 'flex flex-row h-11 focus:outline-none border-l-4 border-transparent items-center px-2 py-1 text-white rounded-md bg-blue-600'
                 : 'flex flex-row h-11 focus:outline-none border-l-4 border-transparent items-center px-2 py-1 text-white transition-colors duration-200 transform rounded-md hover:bg-blue-600'
             "
@@ -165,19 +165,6 @@
           </form>
         </li>
       </ul>
-      <p
-        class="
-          text-slate-50
-          mb-14
-          px-5
-          py-3
-          hidden
-          md:block
-          text-center text-xs
-        "
-      >
-        Aplikasi Pengajuan Surat Rekomendasi Analisis Dampak Lalu Lintas @2022
-      </p>
     </div>
   </div>
   <!-- ./Sidebar -->

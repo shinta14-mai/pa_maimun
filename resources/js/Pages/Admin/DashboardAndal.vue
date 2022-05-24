@@ -75,6 +75,21 @@
                           tracking-wider
                         "
                       >
+                        status
+                      </th>
+                      <th
+                        class="
+                          px-5
+                          py-3
+                          border-b-2 border-slate-900
+                          bg-abu
+                          text-left text-xs
+                          font-semibold
+                          text-slate-50
+                          uppercase
+                          tracking-wider
+                        "
+                      >
                         persyaratan
                       </th>
                       <th
@@ -150,6 +165,19 @@
                           {{ ad.alamat_usaha }}
                         </div>
                       </td>
+                      <td
+                        class="
+                          px-5
+                          py-5
+                          border-b border-gray-200
+                          bg-white
+                          text-sm
+                        "
+                      >
+                        <div class="text-slate-900 uppercase whitespace-no-wrap">
+                          {{ ad.verifikasi }}
+                        </div>
+                      </td>
                       <td class="px-5 py-5 border-b border-gray-200
                           bg-white
                           text-sm">
@@ -163,7 +191,9 @@
                               font-semibold
                               rounded-lg
                               bg-slate-700
+                              hover:bg-slate-500
                               text-white
+                              hover:text-slate-50
                             "
                           >
                             <Link :href="`/andal/${ad.id}`">Details</Link>
@@ -182,7 +212,9 @@
                               font-semibold
                               rounded-lg
                               bg-gold
+                              hover:bg-amber-300
                               text-black
+                              hover:text-slate-900
                             "
                           >
                             <Link :href="`/andal/${ad.id}/edit`">Edit</Link>
@@ -199,10 +231,12 @@
                               font-semibold
                               rounded-lg
                               bg-abu
+                              hover:bg-gray-300
                               text-white
+                              hover:text-slate-600
                             "
                           >
-                            <Link :href="`/andal/${ad.id}`">Unggah</Link>
+                            <Link :href="`/upload`">Unggah</Link>
                           </span>
                         </td>
                     </tr>

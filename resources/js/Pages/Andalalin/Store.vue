@@ -60,7 +60,7 @@
               text-xs
               md:text-base
             "
-            href="/dashboard"
+            href="/redirects"
             >Kembali ke Dashboard</Link
           >
         </div>

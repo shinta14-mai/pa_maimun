@@ -20,6 +20,10 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function andalalin(){
+		return $this->hasMany(Andalalin::class);
+	}
+
     /**
      * The attributes that are mass assignable.
      *

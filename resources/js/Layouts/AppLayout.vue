@@ -5,7 +5,7 @@
         <jet-banner />
 
         <div class="min-h-screen bg-slate-50">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-slate-200">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -19,14 +19,11 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('redirects.index')" :active="route().current('redirects.*')">
+                                <jet-nav-link :href="route('tl.index')" :active="route().current('tl.*')" class="tracking-wide">
+                                    Dashboard
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('redirects.index')" :active="route().current('redirects.*')" class="tracking-wide">
                                     Dokumen Andalalin
-                                </jet-nav-link>
-                                <jet-nav-link :href="route('rt.index')" :active="route().current('rt.*')">
-                                    Rekomendasi Teknis
-                                </jet-nav-link>
-                                <jet-nav-link :href="route('st.index')" :active="route().current('st.*')">
-                                    Standar Teknis
                                 </jet-nav-link>
                             </div>
                         </div>
@@ -93,7 +90,7 @@
                                     <template #trigger>
 
                                         <span class="inline-flex rounded-md">
-                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                            <button type="button" class="inline-flex bg-biru items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-white hover:text-slate-100 hover:bg-slate-700 focus:outline-none transition">
                                                 {{ $page.props.user.name }}
 
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -111,7 +108,7 @@
                                             Profil
                                         </jet-dropdown-link>
 
-                                        <jet-dropdown-link :href="route('profile.show')">
+                                        <jet-dropdown-link :href="route('info.create')">
                                             Change Me
                                         </jet-dropdown-link>
 
@@ -164,14 +161,11 @@
                             <jet-responsive-nav-link :href="route('redirects.index')" :active="route().current('redirects.*')">
                             Dokumen Andalalin
                         </jet-responsive-nav-link>
-                        <jet-responsive-nav-link :href="route('rt.index')" :active="route().current('rt.*')">
-                            Rekomendasi Teknis
-                        </jet-responsive-nav-link>
-                        <jet-responsive-nav-link :href="route('st.index')" :active="route().current('st.*')">
-                            Standar Teknis
-                        </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
                                 Profile
+                            </jet-responsive-nav-link>
+                            <jet-responsive-nav-link :href="route('info.create')" :active="route().current('profile.show')">
+                                Change Me
                             </jet-responsive-nav-link>
 
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">

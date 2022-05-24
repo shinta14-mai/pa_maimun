@@ -1,5 +1,17 @@
 <template>
 
+<div
+    class="
+      min-h-screen
+      flex flex-col flex-auto flex-shrink-0
+      antialiased
+      bg-slate-50
+      text-black
+    "
+  >
+    <Sidebar />
+    <div class="h-screen ml-14 md:ml-64">
+
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div v-if="$page.props.jetstream.canUpdateProfileInformation">
@@ -28,7 +40,7 @@
                     <delete-user-form class="mt-10 sm:mt-0" />
                 </template>
 
-                <div class="mt-2 flex justify-end text-base">
+                <!-- <div class="mt-2 flex justify-end text-base">
           <Link
             class="
               bg-slate-900
@@ -55,8 +67,10 @@
             href="/dashboard"
             >Kembali ke Dashboard</Link
           >
-        </div>
+        </div> -->
             </div>
+        </div>
+        </div>
         </div>
 </template>
 
@@ -70,6 +84,7 @@
     import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue'
     import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue'
     import { Link } from "@inertiajs/inertia-vue3"
+    import Sidebar from "@/Layouts/Sidebar.vue";
 
     export default defineComponent({
         props: ['sessions'],
@@ -83,6 +98,7 @@
             UpdatePasswordForm,
             UpdateProfileInformationForm,
             Link,
+            Sidebar,
         },
     })
 </script>

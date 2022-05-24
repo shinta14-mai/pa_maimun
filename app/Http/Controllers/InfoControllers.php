@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Info;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +15,7 @@ class InfoControllers extends Controller
      */
     public function index()
     {
-        return Inertia::render('Info');
+        return Inertia::render('Info/Index');
     }
 
     /**
@@ -24,7 +25,7 @@ class InfoControllers extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Info/Create');
     }
 
     /**
@@ -35,7 +36,27 @@ class InfoControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'file' => ['file', 'max:512000']
+        ], [
+            'max' => 'File cannot be larger than 512MB.'
+        ]);
+
+        $file = request()->file('file');
+
+        $media = Info::create([
+            'name' => $file->getClientOriginalName(),
+            'file_name' => $file->getClientOriginalName(),
+            'mime_type' => $file->getMimeType(),
+            'size' => $file->getSize(),
+        ]);
+
+        $directory = "media/{$media->created_at->format('Y/m/d')}/{$media->id}";
+        $file->storeAs($directory, $media->file_name, 'public');
+
+        return [
+            'preview_url' => $media->preview_url
+        ];
     }
 
     /**
