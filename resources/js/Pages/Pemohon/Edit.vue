@@ -1,7 +1,17 @@
 <template>
-  <app-layout title="Detail Dokumen Andalalin">
-    <div class="py-4">
-      <div class="max-w-3xl mx-auto sm:px-6 lg:px-2">
+  <div
+    class="
+      min-h-screen
+      flex flex-col flex-auto flex-shrink-0
+      antialiased
+      bg-slate-50
+      text-black
+    "
+  >
+    <Sidebar />
+
+    <div class="h-screen ml-14 md:ml-64">
+      <div class="max-w-3xl mx-auto sm:px-6 lg:px-2 py-6">
         <div class="bg-abu shadow overflow-hidden sm:rounded-lg">
           <div class="px-4 py-5 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-white">
@@ -603,23 +613,22 @@
         </div>
       </div>
     </div>
-  </app-layout>
+  </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/inertia-vue3";
-// import { PaperClipIcon } from '@heroicons/vue/solid'
+import Sidebar from "@/Layouts/Sidebar.vue";
 
 export default defineComponent({
   components: {
-    AppLayout,
-    Link,
-    // PaperClipIcon,
+Link,
+Sidebar,
   },
+
   props: {
-    andal: Object,
+      andal : Object
   },
 });
 </script>

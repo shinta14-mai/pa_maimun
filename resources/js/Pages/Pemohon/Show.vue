@@ -64,7 +64,7 @@
 
             <!-- Content that showing in the box -->
             <div class="flex-auto">
-              <h1 class="text-lg">{{  ad.verifikasi }}</h1>
+              <h1 class="text-lg">{{  andal.verifikasi }}</h1>
               <h1 class="text-xl font-bold">
                 Orientation and Briefing on Uniliver basics
               </h1>

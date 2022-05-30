@@ -3,43 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Andalalin;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Redirect;
 
-class PemohonControllers extends Controller
+class UploadControllers extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $role = Auth::user()->role;
-        $andal = Andalalin::with('user')->where('user_id', Auth::user()->id)->get();
-        $user = Andalalin::with('user')->where('user_id', Auth::user()->id)->count();
-
-        if($role == 'admin')
-        {
-            return Inertia::render('Admin/Index', [
-                'andal' => Andalalin::orderBy('id', 'DESC')->get()
-            ]);
-        }
-        elseif($user >= 1)
-        {
-            return Inertia::render('Pemohon/Index', [
-                'andal' => $andal
-            ]);
-        }
-        else
-        {
-            return Inertia::render('Dashboard');
-
-        }
+        //
     }
 
     /**
@@ -49,7 +25,7 @@ class PemohonControllers extends Controller
      */
     public function create()
     {
-        return Inertia::render('Andalalin/Create');
+        //
     }
 
     /**
@@ -60,7 +36,7 @@ class PemohonControllers extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -71,10 +47,7 @@ class PemohonControllers extends Controller
      */
     public function show($id)
     {
-        $andal = Andalalin::with('user')->where('user_id', Auth::user()->id)->get();
-        return Inertia::render('Pemohon/Show', [
-            'andal' => $andal
-        ]);
+        //
     }
 
     /**
@@ -85,9 +58,9 @@ class PemohonControllers extends Controller
      */
     public function edit($id)
     {
-        $user = Andalalin::find($id);
-        return Inertia::render('Pemohon/Edit', [
-            'andal' => $user
+        $andal = Andalalin::find($id);
+        return Inertia::render('Upload/Edit', [
+            'andal' => $andal
         ]);
     }
 
@@ -100,7 +73,7 @@ class PemohonControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**

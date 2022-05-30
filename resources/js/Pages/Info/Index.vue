@@ -1,4 +1,5 @@
 <template>
+<Head title="Info" />
   <div
     class="
       min-h-screen
@@ -188,47 +189,14 @@
 </template>
 
 <script>
-const callouts = [
-  {
-    name: "Bangkitan Tinggi",
-    description: "Dokumen Andalalin",
-    imageSrc: "/components/ra.jpg",
-    imageAlt:
-      "Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.",
-    href: "#",
-  },
-  {
-    name: "Bangkitan Sedang",
-    description: "Rekomendasi Teknis",
-    imageSrc: "/components/rt.jpg",
-    imageAlt:
-      "Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.",
-    href: "#",
-  },
-  {
-    name: "Bangkitan Rendah",
-    description: "Standar Teknis",
-    imageSrc: "/components/st.jpg",
-    imageAlt: "Collection of four insulated travel bottles on wooden shelf.",
-    href: "#",
-  },
-];
 import { defineComponent } from "vue";
 import Sidebar from "@/Layouts/Sidebar.vue";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 
 export default defineComponent({
   components: {
     Sidebar,
-  },
-
-  props: {
-    andal: Object,
-  },
-
-  setup() {
-    return {
-      callouts,
-    };
+    Head,
   },
 });
 </script>

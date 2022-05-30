@@ -11,6 +11,9 @@ module.exports = {
 
     theme: {
         extend: {
+            backgroundImage: {
+                'logo': "url('/components/logo-dishub.png')",
+               },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
                 roboto: ['Roboto Slab']

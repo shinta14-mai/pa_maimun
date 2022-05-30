@@ -7,7 +7,7 @@ use App\Http\Controllers\AndalalinControllers;
 use App\Http\Controllers\RekomteknisControllers;
 use App\Http\Controllers\StandarteknisControllers;
 use App\Http\Controllers\PemohonControllers;
-use App\Http\Controllers\PengajuanControllers;
+use App\Http\Controllers\UploadControllers;
 use App\Http\Controllers\InfoControllers;
 use App\Http\Controllers\TinjaulapangControllers;
 
@@ -39,5 +39,6 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('info', InfoController
 Route::middleware(['auth:sanctum', 'verified'])->resource('andal', AndalalinControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TinjaulapangControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('redirects', PemohonControllers::class);
+Route::middleware(['auth:sanctum', 'verified'])->resource('upload', UploadControllers::class);
 
 

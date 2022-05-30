@@ -1,4 +1,5 @@
 <template>
+<Head title="Buat Pengajuan" />
   <div
     class="
       min-h-screen
@@ -223,6 +224,7 @@
                     required
                     autofocus
                   />
+                  <a href="/components/surat permohonan.docx" class="text-birmud text-sm underline">Download surat permohonan</a>
                 </div>
 
                 <div class="mt-6">
@@ -399,6 +401,7 @@ import JetInput from "@/Jetstream/Input.vue";
 import JetLabel from "@/Jetstream/Label.vue";
 import Sidebar from "@/Layouts/Sidebar.vue";
 import vueRecaptcha from "vue3-recaptcha2";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 
 export default defineComponent({
   components: {
@@ -406,9 +409,8 @@ export default defineComponent({
     JetLabel,
     Sidebar,
     vueRecaptcha,
+    Head,
   },
-
-  props: {},
 
   data() {
     return {

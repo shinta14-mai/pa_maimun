@@ -1,4 +1,5 @@
 <template>
+ <Head title="Dashboard" />
   <div
     class="
       min-h-screen
@@ -244,7 +245,7 @@
                             hover:text-slate-50
                           "
                         >
-                          <Link :href="`/redirects/${ad.id}`">Details</Link>
+                          <Link :href="`/redirects/${ad.id}/edit`">Details</Link>
                         </span>
                       </td>
                     </tr>
@@ -311,12 +312,13 @@
 <script>
 import { defineComponent } from "vue";
 import Sidebar from "@/Layouts/Sidebar.vue";
-import { Link } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 
 export default defineComponent({
   components: {
     Sidebar,
     Link,
+    Head,
   },
 
   props: {

@@ -236,7 +236,7 @@
                               hover:text-slate-600
                             "
                           >
-                            <Link :href="`/upload`">Unggah</Link>
+                            <Link :href="`/upload/${ad.id}/edit`">Unggah</Link>
                           </span>
                         </td>
                     </tr>
