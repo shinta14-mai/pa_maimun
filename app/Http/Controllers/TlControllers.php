@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Andalalin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class UploadControllers extends Controller
+class TlControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -59,7 +60,7 @@ class UploadControllers extends Controller
     public function edit($id)
     {
         $andal = Andalalin::find($id);
-        return Inertia::render('Upload/Edit', [
+        return Inertia::render('Tinjaulapang/Edit', [
             'andal' => $andal
         ]);
     }
@@ -73,7 +74,17 @@ class UploadControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'tgl_tl' => 'required',
+            'waktu_tl' => 'required',
+        ]);
+
+        Andalalin::where('id', $id)->update([
+            'tgl_tl' => $request->tgl_tl,
+            'waktu_tl' => $request->waktu_tl,
+        ]);
+
+        return Redirect::route('redirects.index');
     }
 
     /**

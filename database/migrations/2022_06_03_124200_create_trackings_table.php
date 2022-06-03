@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInfosTable extends Migration
+class CreateTrackingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('infos', function (Blueprint $table) {
+        Schema::create('trackings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('file_name');
-            $table->string('mime_type');
-            $table->integer('size');
+            $table->string('nama_status');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateInfosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infos');
+        Schema::dropIfExists('trackings');
     }
 }

@@ -69,23 +69,34 @@
                     as="h3"
                     class="text-lg leading-6 font-extrabold text-slate-900 uppercase font-roboto"
                   >
-                    Unggah Berkas
+                    Edit Jadwal Tinjau Lapang
                   </DialogTitle>
                   <div class="mt-2">
                     <form
                       @submit.prevent="submit"
                       enctype="multipart/form-data"
                     >
-                      <div class="mt-6">
-                  <jet-label for="undangan_rapat" value="Undangan Rapat" />
-                  <jet-input
-                    id="ktp"
-                    type="file"
-                    class="mt-1 block w-full"
-                    @change="setKTP"
-                    required
-                    autofocus
-                  />
+
+                      <div class="mt-4">
+                        <jet-label for="tgl_tl" value="Atur Tanggal" />
+                        <jet-input
+                          id="tgl_tl"
+                          type="date"
+                          class="mt-1 block w-1/2 text-center mx-auto"
+                          v-model="form.tgl_tl"
+                          autofocus
+                        />
+                      </div>
+
+                      <div class="mt-4">
+                        <jet-label for="waktu_tl" value="Atur Waktu" />
+                        <jet-input
+                          id="waktu_tl"
+                          type="time"
+                          class="mt-1 block w-1/2 text-center mx-auto"
+                          v-model="form.waktu_tl"
+                          autofocus
+                        />
                       </div>
                       <button
                         type="submit"
@@ -155,7 +166,8 @@ export default {
   data() {
     return {
       form: {
-        verifikasi: this.andal.verifikasi,
+        tgl_tl: this.andal.tgl_tl,
+        waktu_tl: this.andal.waktu_tl,
       },
     };
   },
@@ -164,7 +176,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$inertia.put("/andal/" + this.andal.id, this.form);
+      this.$inertia.put("/tl/" + this.andal.id, this.form);
     },
   },
 };

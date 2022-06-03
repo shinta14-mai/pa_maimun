@@ -39,6 +39,14 @@ class Andalalin extends Model
         'dokumen_andalalin',
         'verifikasi',
         'keterangan',
-        'kode'
+        'kode',
+        'undangan_rapat',
+        'surat_pernyataan',
+        'surat_rekom',
+        'tgl_tl',
+        'waktu_tl',
+        'undangan_rapat',
+        'surat_pernyataan',
+        'surat_rekom',
     ];
 }

@@ -98,14 +98,14 @@
                           py-3
                           border-b-2 border-slate-900
                           bg-abu
-                          text-left text-xs
+                          text-center text-xs
                           font-semibold
                           text-slate-50
                           uppercase
                           tracking-wider
                         "
                       >
-                        aksi
+                        edit
                       </th>
                     </tr>
                   </thead>
@@ -133,7 +133,9 @@
                           text-sm
                         "
                       >
-                        <div class="text-slate-900 uppercase whitespace-no-wrap">
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                        >
                           {{ ad.nama_pemohon }}
                         </div>
                         <div class="text-slate-500 whitespace-no-wrap">
@@ -155,7 +157,9 @@
                           text-sm
                         "
                       >
-                        <div class="text-slate-900 uppercase whitespace-no-wrap">
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                        >
                           {{ ad.jenis_usaha }}
                         </div>
                         <div class="text-slate-500 whitespace-no-wrap">
@@ -174,71 +178,126 @@
                           text-sm
                         "
                       >
-                        <div class="text-slate-900 uppercase whitespace-no-wrap">
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                        >
                           {{ ad.verifikasi }}
                         </div>
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tgl_tl != null"
+                        >
+                          Tinjau Lapang
+                          <span class="inline-flex justify-center">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-5 w-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="green"
+                              stroke-width="2"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </span>
+                        </div>
                       </td>
-                      <td class="px-5 py-5 border-b border-gray-200
+                      <td
+                        class="
+                          px-5
+                          py-5
+                          border-b border-gray-200
                           bg-white
-                          text-sm">
-                          <span
-                            class="
-                              px-2
-                              py-1
-                              inline-flex
-                              text-sm
-                              leading-5
-                              font-semibold
-                              rounded-lg
-                              bg-slate-700
-                              hover:bg-slate-500
-                              text-white
-                              hover:text-slate-50
-                            "
-                          >
-                            <Link :href="`/andal/${ad.id}`">Details</Link>
-                          </span>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200
+                          text-sm
+                        "
+                      >
+                        <span
+                          class="
+                            px-2
+                            py-1
+                            inline-flex
+                            text-sm
+                            leading-5
+                            font-semibold
+                            rounded-lg
+                            bg-slate-700
+                            hover:bg-slate-500
+                            text-white
+                            hover:text-slate-50
+                          "
+                        >
+                          <Link :href="`/andal/${ad.id}`">Details</Link>
+                        </span>
+                      </td>
+                      <td
+                        class="
+                          px-5
+                          py-5
+                          border-b border-gray-200
                           bg-white
-                          text-sm">
-                          <span
-                            class="
-                              px-2
-                              py-1
-                              inline-flex
-                              text-sm
-                              leading-5
-                              font-semibold
-                              rounded-lg
-                              bg-gold
-                              hover:bg-amber-300
-                              text-black
-                              hover:text-slate-900
-                            "
-                          >
-                            <Link :href="`/andal/${ad.id}/edit`">Edit</Link>
-                          </span>
-                          <span
-                            class="
-                              px-2
-                              py-1
-                              sm:ml-2
-                              mt-2
-                              inline-flex
-                              text-sm
-                              leading-5
-                              font-semibold
-                              rounded-lg
-                              bg-abu
-                              hover:bg-gray-300
-                              text-white
-                              hover:text-slate-600
-                            "
-                          >
-                            <Link :href="`/upload/${ad.id}/edit`">Unggah</Link>
-                          </span>
-                        </td>
+                          text-sm
+                        "
+                      >
+                        <span
+                          class="
+                            px-2
+                            py-1
+                            inline-flex
+                            text-sm
+                            leading-5
+                            font-semibold
+                            rounded-lg
+                            bg-gold
+                            hover:bg-amber-300
+                            text-black
+                            hover:text-slate-900
+                          "
+                        >
+                          <Link :href="`/andal/${ad.id}/edit`">Verifikasi</Link>
+                        </span>
+                        <span
+                          class="
+                            px-2
+                            py-1
+                            sm:ml-2
+                            mt-2
+                            inline-flex
+                            text-sm
+                            leading-5
+                            font-semibold
+                            rounded-lg
+                            bg-abu
+                            hover:bg-gray-300
+                            text-white
+                            hover:text-slate-600
+                          "
+                        >
+                          <Link :href="`/tl/${ad.id}/edit`">Tinjau Lapang</Link>
+                        </span>
+                        <span
+                          class="
+                            px-2
+                            py-1
+                            sm:ml-2
+                            mt-2
+                            inline-flex
+                            text-sm
+                            leading-5
+                            font-semibold
+                            rounded-lg
+                            bg-abu
+                            hover:bg-gray-300
+                            text-white
+                            hover:text-slate-600
+                          "
+                        >
+                          <Link :href="`/berkas/${ad.id}/edit`">Pengajuan</Link>
+                        </span>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -303,7 +362,7 @@
 <script>
 import { defineComponent } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link } from "@inertiajs/inertia-vue3";
 
 export default defineComponent({
   components: {

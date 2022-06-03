@@ -4,12 +4,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AndalalinControllers;
-use App\Http\Controllers\RekomteknisControllers;
-use App\Http\Controllers\StandarteknisControllers;
 use App\Http\Controllers\PemohonControllers;
-use App\Http\Controllers\UploadControllers;
 use App\Http\Controllers\InfoControllers;
-use App\Http\Controllers\TinjaulapangControllers;
+use App\Http\Controllers\TlControllers;
+use App\Http\Controllers\BerkasControllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +37,6 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('info', InfoController
 Route::middleware(['auth:sanctum', 'verified'])->resource('andal', AndalalinControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TinjaulapangControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('redirects', PemohonControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('upload', UploadControllers::class);
-
+Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TlControllers::class);
+Route::middleware(['auth:sanctum', 'verified'])->resource('berkas', BerkasControllers::class);
 
