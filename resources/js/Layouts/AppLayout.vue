@@ -25,6 +25,9 @@
                                 <jet-nav-link :href="route('redirects.index')" :active="route().current('redirects.*')" class="tracking-wide">
                                     Dokumen Andalalin
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('info.index')" :active="route().current('info.*')" class="tracking-wide">
+                                    Informasi
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -108,10 +111,6 @@
                                             Profil
                                         </jet-dropdown-link>
 
-                                        <jet-dropdown-link :href="route('info.create')">
-                                            Change Me
-                                        </jet-dropdown-link>
-
                                         <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
                                             API Tokens
                                         </jet-dropdown-link>
@@ -163,9 +162,6 @@
                         </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
                                 Profile
-                            </jet-responsive-nav-link>
-                            <jet-responsive-nav-link :href="route('info.create')" :active="route().current('profile.show')">
-                                Change Me
                             </jet-responsive-nav-link>
 
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">

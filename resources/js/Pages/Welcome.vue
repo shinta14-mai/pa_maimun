@@ -2,7 +2,7 @@
   <Head title="Andalalin Dishub Banyuwangi" />
 
   <header class="relative mb-10">
-      <!-- ini nav -->
+    <!-- ini nav -->
     <div class="px-4 sm:px-6 md:px-8">
       <div class="absolute inset-0 bottom-10 bg-slate-50">
         <div class="absolute inset-0"></div>
@@ -21,8 +21,13 @@
           leading-6
         "
       >
-        <img src="/components/logo-dishub.png" class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 block" />
-        <h1 class="md:flex md:mx-auto hidden">Dinas Perhubungan Kabupaten Banyuwangi</h1>
+        <img
+          src="/components/logo-dishub.png"
+          class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 block"
+        />
+        <h1 class="md:flex md:mx-auto md:text-base md:uppercase hidden">
+          aplikasi Pengajuan Surat Rekomendasi Analisis Dampak Lalu Lintas
+        </h1>
         <div class="flex items-center">
           <div class="md:flex items-center">
             <nav>
@@ -38,8 +43,7 @@
                       focus:ring-offset-2
                       focus:ring-offset-slate-50
                       text-slate-50
-                      sm:h-8
-                      sm:px-6
+                      sm:h-8 sm:px-6
                       h-6
                       px-4
                       rounded-md
@@ -63,8 +67,7 @@
                       focus:ring-slate-500
                       focus:ring-offset-2
                       focus:ring-offset-slate-700
-                      sm:h-8
-                      sm:px-6
+                      sm:h-8 sm:px-6
                       h-6
                       px-4
                       rounded-md
@@ -82,71 +85,16 @@
           </div>
         </div>
       </div>
-
-      <div class="relative max-w-5xl mx-auto pt-20 sm:pt-24 lg:pt-32">
-        <h1
-          class="
-            text-slate-900
-            font-extrabold
-            text-2xl
-            sm:text-4xl
-            lg:text-5xl
-            tracking-tight
-            text-center
-            font-roboto
-          "
-        >
-          Pengajuan Analisis Dampak Lalu Lintas
-          <span class="text-birmud mb-3"> (Andalalin) </span>
-          <br />Dinas Perhubungan Kabupaten Banyuwangi.
-        </h1>
-        <p
-          class="
-            mt-6
-            text-sm
-            sm:text-md
-            lg:text-lg
-            text-slate-600 text-center
-            max-w-3xl
-            mx-auto
-          "
-        >
-          Analisis Dampak Lalu Lintas (Andalalin) adalah serangkaian kegiatan
-          kajian mengenai dampak lalu lintas dari pembangunan pusat kegiatan,
-          permukiman, dan infrastruktur yang hasilnya dituangkan dalam bentuk
-          dokumen hasil analisis dampak lalu lintas.
-        </p>
-        <div class="mt-6 sm:mt-10 flex justify-center bg-slate-50 text-base">
-          <a
-            class="
-              bg-slate-900
-              hover:bg-slate-700
-              focus:outline-none
-              focus:ring-2
-              focus:ring-slate-400
-              focus:ring-offset-2
-              focus:ring-offset-slate-50
-              text-slate-50
-              font-semibold
-              h-12
-              px-6
-              rounded-lg
-              w-full
-              flex
-              items-center
-              justify-center
-              sm:w-auto
-            "
-            href="#panduan"
-            >Panduan</a
-          >
-        </div>
-      </div>
     </div>
   </header>
 
-  <section class="h-screen p-5 bg-slate-50" id="panduan">
-    <div class="my-20 sm:my-24 md:my-8 text-center">
+  <section
+    class="h-screen p-5 bg-slate-50"
+    id="panduan"
+    v-for="ad in welcome"
+    :key="ad.id"
+  >
+    <div class="my-4 sm:my-16 md:my-1 text-center">
       <h1
         class="
           text-2xl
@@ -162,11 +110,11 @@
         Panduan Pengajuan
         <span class="text-birmud mb-3"> Andalalin </span>
       </h1>
-      <img src="/components/panduan.png" class="w-full sm:w-1/2 mx-auto" />
+      <img :src="`/storage/${ad.panduan}`" class="w-full sm:w-1/2 mx-auto" />
     </div>
   </section>
 
-  <section class="bg-slate-50">
+  <section class="bg-slate-50" v-for="ad in welcome" :key="ad.id">
     <div class="container mx-auto py-9 md:py-12 lg:py-24">
       <div class="flex flex-col lg:flex-row justify-center items-strech mx-4">
         <div class="lg:w-4/12 flex justify-center items-center">
@@ -183,7 +131,8 @@
                 leading-8
               "
             >
-              Kriteria Ukuran Wajib <span class="text-birmud mb-3"> Andalalin </span>
+              Kriteria Ukuran Wajib
+              <span class="text-birmud mb-3"> Andalalin </span>
             </h1>
             <p
               class="
@@ -244,8 +193,8 @@
               "
             >
               <a
-              href="/components/Kriteria.pdf"
-              target="_blank"
+                :href="`/storage/${ad.kriteria}`"
+                target="_blank"
                 class="
                   bg-slate-900
                   text-slate-50
@@ -257,11 +206,11 @@
                   flex
                   items-center
                   hover:bg-slate-700
-              focus:outline-none
-              focus:ring-2
-              focus:ring-slate-400
-              focus:ring-offset-2
-              focus:ring-offset-slate-50
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-slate-400
+                  focus:ring-offset-2
+                  focus:ring-offset-slate-50
                 "
               >
                 Lihat Selengkapnya
@@ -330,8 +279,8 @@
               "
             >
               <a
-              href="/components/surat_permohonan.pdf"
-              target="_blank"
+                :href="`/storage/${ad.permohonan}`"
+                target="_blank"
                 class="
                   bg-slate-900
                   text-slate-50
@@ -343,11 +292,11 @@
                   flex
                   items-center
                   hover:bg-slate-700
-              focus:outline-none
-              focus:ring-2
-              focus:ring-slate-400
-              focus:ring-offset-2
-              focus:ring-offset-slate-50
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-slate-400
+                  focus:ring-offset-2
+                  focus:ring-offset-slate-50
                 "
               >
                 Lihat Selengkapnya
@@ -372,7 +321,7 @@
           </div>
         </div>
         <div class="lg:w-4/12 sm:ml-20 md:mt-8 lg:my-auto">
-        <div>
+          <div>
             <h1
               class="
                 sm:text-4xl
@@ -384,7 +333,8 @@
                 w-7/12
               "
             >
-              Surat Permohonan Pengajuan <span class="text-birmud mb-3"> Andalalin </span>
+              Surat Permohonan Pengajuan
+              <span class="text-birmud mb-3"> Andalalin </span>
             </h1>
             <p
               class="
@@ -399,10 +349,10 @@
                 text-gray-600
               "
             >
-              Surat Permohonan ini digunakan sebagai salah satu persyaratan dalam mengajukan Analisis Dampak Lalu Lintas
+              Surat Permohonan ini digunakan sebagai salah satu persyaratan
+              dalam mengajukan Analisis Dampak Lalu Lintas
             </p>
           </div>
-
         </div>
       </div>
     </div>
@@ -422,7 +372,8 @@
                 w-7/12
               "
             >
-              Surat Rekomendasi <span class="text-birmud mb-3"> Andalalin </span>
+              Surat Rekomendasi
+              <span class="text-birmud mb-3"> Andalalin </span>
             </h1>
             <p
               class="
@@ -437,8 +388,10 @@
                 text-gray-600
               "
             >
-              Surat Rekomendasi Andalalin yang sudah jadi dapat digunakan sebagai salah satu kelengkapan berkas pengajuan Izin
-    Mendirikan Bangunan (IMB). Berikut ini contoh surat rekomendasi Andalalin yang sudah terbit.
+              Surat Rekomendasi Andalalin yang sudah jadi dapat digunakan
+              sebagai salah satu kelengkapan berkas pengajuan Izin Mendirikan
+              Bangunan (IMB). Berikut ini contoh surat rekomendasi Andalalin
+              yang sudah terbit.
             </p>
           </div>
         </div>
@@ -482,8 +435,8 @@
               "
             >
               <a
-              href="/components/surat_rekom.pdf"
-              target="_blank"
+                :href="`/storage/${ad.rekom}`"
+                target="_blank"
                 class="
                   bg-slate-900
                   text-slate-50
@@ -495,11 +448,11 @@
                   flex
                   items-center
                   hover:bg-slate-700
-              focus:outline-none
-              focus:ring-2
-              focus:ring-slate-400
-              focus:ring-offset-2
-              focus:ring-offset-slate-50
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-slate-400
+                  focus:ring-offset-2
+                  focus:ring-offset-slate-50
                 "
               >
                 Lihat Selengkapnya
@@ -526,14 +479,20 @@
       </div>
     </div>
   </section>
+  <footers />
 </template>
 
 <script>
-import {defineComponent} from 'vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { defineComponent } from "vue";
+import { Head } from "@inertiajs/inertia-vue3";
+import Footers from "@/Layouts/Footer.vue";
 export default defineComponent({
-  components:{
-      Head
-  }
-})
+  components: {
+    Head,
+    Footers,
+  },
+  props: {
+    welcome: Object,
+  },
+});
 </script>

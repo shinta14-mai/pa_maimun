@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Info;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class InfoControllers extends Controller
@@ -15,7 +18,19 @@ class InfoControllers extends Controller
      */
     public function index()
     {
-        return Inertia::render('Info/Index');
+        $role = Auth::user()->role;
+
+        if($role == 'admin')
+        {
+            return Inertia::render('Info/Admin', [
+                'info' => Info::orderBy('id', 'ASC')->get()
+            ]);
+        }
+        else
+        {
+            return Inertia::render('Info/Pemohon');
+
+        }
     }
 
     /**
@@ -36,27 +51,14 @@ class InfoControllers extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'file' => ['file', 'max:512000']
-        ], [
-            'max' => 'File cannot be larger than 512MB.'
+        Info::create([
+            'panduan' => $request -> file('panduan') ? $request -> file('panduan') -> store('file-panduan', 'public') : null,
+            'kriteria' => $request -> file('kriteria') ? $request -> file('kriteria') -> store('file-kriteria', 'public') : null,
+            'permohonan' => $request -> file('permohonan') ? $request -> file('permohonan') -> store('file-permohonan', 'public') : null,
+            'rekom' => $request -> file('rekom') ? $request -> file('rekom') -> store('file-rekom', 'public') : null,
         ]);
 
-        $file = request()->file('file');
-
-        $media = Info::create([
-            'name' => $file->getClientOriginalName(),
-            'file_name' => $file->getClientOriginalName(),
-            'mime_type' => $file->getMimeType(),
-            'size' => $file->getSize(),
-        ]);
-
-        $directory = "media/{$media->created_at->format('Y/m/d')}/{$media->id}";
-        $file->storeAs($directory, $media->file_name, 'public');
-
-        return [
-            'preview_url' => $media->preview_url
-        ];
+        return Redirect::route('info.index');
     }
 
     /**
@@ -67,7 +69,10 @@ class InfoControllers extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Info::find($id);
+        return Inertia::render('Welcome', [
+            'welcome' => $user
+        ]);
     }
 
     /**
@@ -78,7 +83,10 @@ class InfoControllers extends Controller
      */
     public function edit($id)
     {
-        //
+        $info = Info::find($id);
+        return Inertia::render('Info/Edit', [
+            'info' => $info
+        ]);
     }
 
     /**
@@ -88,9 +96,29 @@ class InfoControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Info $info)
     {
-        //
+        $request->validate([
+            'panduan' => ['nullable', 'file'],
+            'kriteria' => ['nullable', 'file'],
+            'permohonan' => ['nullable', 'file'],
+            'rekom' => ['nullable', 'file'],
+        ]);
+
+        if($request->file('panduan')){
+            $info->update(['panduan' => $request->file('panduan')->store('file-panduan')]);
+        };
+        if($request->file('kriteria')){
+            $info->update(['kriteria' => $request->file('kriteria')->store('file-kriteria')]);
+        };
+        if($request->file('permohonan')){
+            $info->update(['permohonan' => $request->file('permohonan')->store('file-permohonan')]);
+        };
+        if($request->file('rekom')){
+            $info->update(['rekom' => $request->file('rekom')->store('file-rekom')]);
+        };
+
+        return Redirect::route('info.index');
     }
 
     /**

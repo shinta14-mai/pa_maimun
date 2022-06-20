@@ -88,7 +88,6 @@ class AndalalinControllers extends Controller
             'company_profile' => $request -> file('company_profile') ? $request -> file('company_profile') -> store('company-profile', 'public') : null,
             'sertifikat_penyusun' => $request -> file('sertifikat_penyusun') ? $request -> file('sertifikat_penyusun') -> store('sertifikat-penyusun', 'public') : null,
             'dokumen_andalalin' => $request -> file('dokumen_andalalin') ? $request -> file('dokumen_andalalin') -> store('dokumen-andalalin', 'public') : null,
-            'undangan_rapat' => $request -> file('undangan_rapat') ? $request -> file('undangan_rapat') -> store('undangan-rapat', 'public') : null,
         ]);
 
         return Inertia::render('Andalalin/Store', [
@@ -131,16 +130,15 @@ class AndalalinControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Andalalin $andal)
     {
         $request->validate([
-            'verifikasi' => 'required',
+            'surat_pemohon' => ['nullable', 'file'],
         ]);
 
-        Andalalin::where('id', $id)->update([
-            // 'verifikasi' => $request->verifikasi,
-            'surat_pemohon' => $request -> file('surat_pemohon')
-        ]);
+        if($request->file('surat_pemohon')){
+            $andal->update(['surat_pemohon' => $request->file('surat_pemohon')->store('surat-permohonan')]);
+        };
 
         return Redirect::route('redirects.index');
     }

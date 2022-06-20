@@ -62,6 +62,10 @@
               </div>
             </div>
           </div>
+          <div class="p-4">
+              <jet-label for="search" value="Search" />
+              <jet-input id="search" type="text" v-model="term" @keyup="search" class="ml-2 px-2 py-1 text-sm rounded border" />
+          </div>
           <div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div
@@ -154,7 +158,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="ad in andal" :key="ad.id">
+                    <tr v-for="ad in andal.data" :key="ad.id">
                       <td
                         class="
                           px-5
@@ -267,7 +271,7 @@
                     Showing 1 to 4 of 50 Entries
                   </span>
                   <div class="inline-flex mt-2 xs:mt-0">
-                    <button
+                    <Link :href="andal.prev_page_url"
                       class="
                         text-sm text-indigo-50
                         transition
@@ -281,9 +285,10 @@
                       "
                     >
                       Prev
-                    </button>
+                    </Link>
                     &nbsp; &nbsp;
-                    <button
+                    <Link
+                    :href="andal.next_page_url"
                       class="
                         text-sm text-indigo-50
                         transition
@@ -297,7 +302,7 @@
                       "
                     >
                       Next
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -313,16 +318,30 @@
 import { defineComponent } from "vue";
 import Sidebar from "@/Layouts/Sidebar.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import JetInput from "@/Jetstream/Input.vue";
+import JetLabel from "@/Jetstream/Label.vue";
+import __ from 'lodash';
 
 export default defineComponent({
   components: {
     Sidebar,
     Link,
     Head,
+    JetInput,
+    JetLabel,
   },
-
+  data(){
+      return{
+          term: '',
+      }
+  },
   props: {
     andal: Object,
+  },
+  methods:{
+      search: _.throttle(function(){
+          this.$inertia.replace(this.$route('redirects.index', {term: this.term}))
+      }, 200)
   },
 });
 </script>

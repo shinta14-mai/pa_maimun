@@ -41,9 +41,7 @@ class CreateAndalalinsTable extends Migration
             $table->string('keterangan')->nullable();
             $table->date('tgl_tl')->nullable();
             $table->time('waktu_tl')->nullable();
-            $table->string('undangan_rapat')->nullable();
-            $table->string('surat_pernyataan')->nullable();
-            $table->string('surat_rekom')->nullable();
+            $table->foreignId('tracking_id')->constrained();
             $table->timestamps();
         });
     }

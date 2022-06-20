@@ -29,7 +29,7 @@
             font-roboto
           "
         >
-          Selamat Datang di Aplikasi Pengajuan Andalalin
+          Selamat Datang di Aplikasi Pengajuan Surat Rekomendasi Andalalin
           <br />Dinas Perhubungan Kabupaten Banyuwangi.
         </h1>
 

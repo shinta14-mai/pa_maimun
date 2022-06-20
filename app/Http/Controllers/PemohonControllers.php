@@ -17,7 +17,7 @@ class PemohonControllers extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
         $role = Auth::user()->role;
         $andal = Andalalin::with('user')->where('user_id', Auth::user()->id)->get();
@@ -32,7 +32,10 @@ class PemohonControllers extends Controller
         elseif($user >= 1)
         {
             return Inertia::render('Pemohon/Index', [
-                'andal' => $andal
+                // 'andal' => $andal
+                'andal' => Andalalin::when($request->term, function ($query, $term){
+                    $query->where('title', 'LIKE', '%'.$term.'%');
+                })->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate()
             ]);
         }
         else
@@ -98,9 +101,34 @@ class PemohonControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Andalalin $id)
     {
+        // $request->validate([
+        //     'surat_pemohon' => 'required|file',
+        // ]);
 
+        // // if($request->file('surat_pemohon')){
+        // //     $validateData['surat_pemohon'] = $request->file()
+        // // }
+
+        // Andalalin::where('id', $id)->update([
+        //     'surat_pemohon' => $request -> file('surat_pemohon') -> store('surat-permohonan'),
+        // ]);
+
+        $rules = [
+            'surat_pemohon' => 'required|file'
+        ];
+
+        if($request->file("surat_pemohon")){
+            $validateData['surat_pemohon'] = $request->file('surat_pemohon')->store('surat-permohonan');
+        }
+
+        $validateData = $request->validate($rules);
+
+
+
+        Andalalin::where('id', $id)-> update($validateData);
+        return Redirect::route('redirects.index');
     }
 
     /**

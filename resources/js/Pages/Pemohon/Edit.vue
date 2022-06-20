@@ -12,7 +12,7 @@
 
     <div class="h-screen ml-14 md:ml-64">
       <div class="max-w-3xl mx-auto sm:px-6 lg:px-2 py-6">
-        <div class="bg-abu shadow overflow-hidden sm:rounded-lg">
+        <!-- <div class="bg-abu shadow overflow-hidden sm:rounded-lg">
           <div class="px-4 py-5 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-white">
               Informasi Pengajuan Dokumen Andalalin
@@ -610,7 +610,52 @@
               </div>
             </dl>
           </div>
-        </div>
+        </div> -->
+
+        <form
+                      @submit.prevent="submit"
+                      enctype="multipart/form-data"
+                    >
+                      <div>
+                        <jet-label
+                          for="surat_pemohon"
+                          value="Panduan Pengajuan Andalalin"
+                        />
+                        <jet-input
+                          id="surat_pemohon"
+                          type="file"
+                          class="mt-1 block w-full"
+                          @change="setSP"
+                          autofocus
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        class="
+                          mt-10
+                          inline-flex
+                          justify-center
+                          py-2
+                          px-4
+                          border border-transparent
+                          shadow-sm
+                          text-sm
+                          font-medium
+                          rounded-md
+                          text-white
+                          bg-biru
+                          hover:bg-blue-700
+                          focus:outline-none
+                          focus:ring-2
+                          focus:ring-offset-2
+                          focus:ring-blue-500
+                          disabled:bg-slate-900
+                        "
+                      >
+                        Simpan
+                      </button>
+                    </form>
+
       </div>
     </div>
   </div>
@@ -620,15 +665,36 @@
 import { defineComponent } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
 import Sidebar from "@/Layouts/Sidebar.vue";
+import JetInput from "@/Jetstream/Input.vue";
+import JetLabel from "@/Jetstream/Label.vue";
 
 export default defineComponent({
   components: {
 Link,
 Sidebar,
+JetInput,
+    JetLabel,
   },
 
   props: {
       andal : Object
+  },
+  data() {
+    return {
+      form: {
+        surat_pemohon: this.andal.surat_pemohon,
+      },
+    };
+  },
+  methods: {
+    submit() {
+        let data = new FormData();
+      data.append("surat_pemohon", this.form.surat_pemohon);
+      this.$inertia.put("/redirects/" + this.andal.id, this.form);
+    },
+    setSP(e) {
+      this.form.surat_pemohon = e.target.files[0];
+    },
   },
 });
 </script>

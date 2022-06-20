@@ -45,8 +45,5 @@ class Andalalin extends Model
         'surat_rekom',
         'tgl_tl',
         'waktu_tl',
-        'undangan_rapat',
-        'surat_pernyataan',
-        'surat_rekom',
     ];
 }

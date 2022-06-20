@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrackingsTable extends Migration
+class CreateBerkasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateTrackingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trackings', function (Blueprint $table) {
+        Schema::create('berkas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_status');
+            $table->foreignId('andalalin_id')->constrained();
+            $table->string('undangan_rapat')->nullable();
+            $table->string('surat_pernyataan')->nullable();
+            $table->string('surat_rekom')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateTrackingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trackings');
+        Schema::dropIfExists('berkas');
     }
 }

@@ -224,7 +224,7 @@
                     required
                     autofocus
                   />
-                  <a href="/components/surat permohonan.docx" class="text-birmud text-sm underline">Download surat permohonan</a>
+                  <a href="/components/surat permohonan.docx" class="text-birmud text-sm underline">Download template surat permohonan</a>
                 </div>
 
                 <div class="mt-6">

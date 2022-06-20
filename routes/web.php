@@ -8,6 +8,7 @@ use App\Http\Controllers\PemohonControllers;
 use App\Http\Controllers\InfoControllers;
 use App\Http\Controllers\TlControllers;
 use App\Http\Controllers\BerkasControllers;
+use App\Models\Info;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'welcome' => Info::orderBy('id', 'ASC')->get()
     ]);
 });
 
@@ -38,5 +40,4 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('andal', AndalalinCont
 Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TinjaulapangControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('redirects', PemohonControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TlControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('berkas', BerkasControllers::class);
 
