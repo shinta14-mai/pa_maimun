@@ -14,9 +14,11 @@ class AndalalinControllers extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
+        return Inertia::render('Andalalin/Index', [
+            'andal' => Andalalin::orderBy('id', 'DESC')->get()
+        ]);
     }
 
     /**
@@ -37,6 +39,36 @@ class AndalalinControllers extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => 'required',
+            'nama_kategori' => 'required',
+            'nama_pemohon' => 'required',
+            'alamat_pemohon' => 'required',
+            'no_tlp' => 'required',
+            'jenis_usaha' => 'required',
+            'alamat_usaha' => 'required',
+            'luas_lahan' => 'required',
+            'luas_bangunan' => 'required',
+            'status_lahan' => 'required',
+            'kapasitas' => 'required',
+            'email_pemohon' => 'required',
+            'surat_pemohon' => 'required|file',
+            'ktp' => 'required|file',
+            'sertifikat_tanah' => 'required|file',
+            'ktr' => 'required|file',
+            'rencana_tapak' => 'required|file',
+            'desain_bangunan' => 'required|file',
+            'company_profile' => 'nullable|file',
+            'sertifikat_penyusun' => 'nullable|file',
+            'dokumen_andalalin' => 'nullable|file',
+            'kode' => 'required',
+            'verifikasi' => 'required',
+            'keterangan' => 'required',
+            'tgl_tl' => 'required',
+            'waktu_tl' => 'required',
+            'tracking_id' =>'required',
+
+        ]);
         $characters = '0123456789';
         $charactersNumber = strlen($characters);
 
@@ -63,8 +95,9 @@ class AndalalinControllers extends Controller
             $codeR = 'ST/'.$code.'/'.date("Y/m/d");
         }
 
-        Andalalin::create([
+        Andalalin::insert([
             'user_id' => auth()->id(),
+            // 'tracking_id' => 1,
             'nama_kategori' => $request -> input('nama_kategori'),
             'nama_pemohon' => $request -> input('nama_pemohon'),
             'alamat_pemohon' => $request -> input('alamat_pemohon'),

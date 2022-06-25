@@ -14,6 +14,10 @@ class Andalalin extends Model
 		return $this->belongsTo(User::class);
 	}
 
+    public function tracking(){
+        return $this->belongsTo(Tracking::class);
+    }
+
     public $table = 'andalalins';
     protected $fillable = [
         'user_id',
@@ -45,5 +49,6 @@ class Andalalin extends Model
         'surat_rekom',
         'tgl_tl',
         'waktu_tl',
+        'tracking_id'
     ];
 }

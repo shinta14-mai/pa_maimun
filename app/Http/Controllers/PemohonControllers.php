@@ -25,9 +25,7 @@ class PemohonControllers extends Controller
 
         if($role == 'admin')
         {
-            return Inertia::render('Admin/Index', [
-                'andal' => Andalalin::orderBy('id', 'DESC')->get()
-            ]);
+            return Inertia::render('Admin/Index');
         }
         elseif($user >= 1)
         {

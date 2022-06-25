@@ -96,7 +96,7 @@
               </svg>
             </span>
             <span class="text-slate-50 ml-2 text-sm tracking-wide truncate"
-              >Info</span
+              >Informasi</span
             >
           </Link>
         </li>

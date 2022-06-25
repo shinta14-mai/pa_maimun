@@ -19,10 +19,10 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('tl.index')" :active="route().current('tl.*')" class="tracking-wide">
+                                <jet-nav-link :href="route('redirects.index')" :active="route().current('redirects.*')" class="tracking-wide">
                                     Dashboard
                                 </jet-nav-link>
-                                <jet-nav-link :href="route('redirects.index')" :active="route().current('redirects.*')" class="tracking-wide">
+                                <jet-nav-link :href="route('andal.index')" :active="route().current('andal.*')" class="tracking-wide">
                                     Dokumen Andalalin
                                 </jet-nav-link>
                                 <jet-nav-link :href="route('info.index')" :active="route().current('info.*')" class="tracking-wide">
@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <jet-responsive-nav-link :href="route('redirects.index')" :active="route().current('redirects.*')">
+                            <jet-responsive-nav-link :href="route('redirects.index')" :active="route().current('andal.*')">
                             Dokumen Andalalin
                         </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">

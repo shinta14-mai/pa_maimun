@@ -28,7 +28,9 @@ class InfoControllers extends Controller
         }
         else
         {
-            return Inertia::render('Info/Pemohon');
+            return Inertia::render('Info/Pemohon', [
+                'info' => Info::orderBy('id', 'ASC')->get()
+            ]);
 
         }
     }
