@@ -13,7 +13,7 @@
           </div>
           <div class="border-t border-slate-900">
             <dl>
-                <div
+              <div
                 class="
                   bg-slate-100
                   px-4
@@ -21,7 +21,9 @@
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
               >
-                <dt class="text-sm font-medium text-slate-500">Nama Kategori</dt>
+                <dt class="text-sm font-medium text-slate-500">
+                  Nama Kategori
+                </dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
                   {{ andal.nama_kategori }}
                 </dd>
@@ -34,7 +36,9 @@
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
               >
-                <dt class="text-sm font-medium text-slate-500">Kode Registrasi</dt>
+                <dt class="text-sm font-medium text-slate-500">
+                  Kode Registrasi
+                </dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
                   {{ andal.kode }}
                 </dd>
@@ -47,7 +51,9 @@
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
               >
-                <dt class="text-sm font-medium text-slate-500">Status Verifikasi</dt>
+                <dt class="text-sm font-medium text-slate-500">
+                  Status Verifikasi
+                </dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
                   {{ andal.verifikasi }}
                 </dd>
@@ -290,7 +296,7 @@
                             hover:text-indigo-500
                           "
                         >
-                         Lihat Selengkapnya
+                          Lihat Selengkapnya
                         </a>
                       </div>
                     </li>
@@ -475,7 +481,8 @@
                         items-center
                         justify-between
                         text-sm
-                      " v-if="andal.company_profile != null"
+                      "
+                      v-if="andal.company_profile != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -518,7 +525,8 @@
                         items-center
                         justify-between
                         text-sm
-                      " v-if="andal.sertifikat_penyusun != null"
+                      "
+                      v-if="andal.sertifikat_penyusun != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -561,7 +569,8 @@
                         items-center
                         justify-between
                         text-sm
-                      " v-if="andal.dokumen_andalalin != null"
+                      "
+                      v-if="andal.dokumen_andalalin != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg

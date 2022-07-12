@@ -32,7 +32,7 @@
             mx-auto
           "
         >
-          Pengajuan Anda Sedang Diproses <br />
+          Pengajuan Anda Telah Terkirim. <br />
           <span class="block xl:inline text-black"
             >Nomor Registrasi Anda : {{ code }}
           </span>

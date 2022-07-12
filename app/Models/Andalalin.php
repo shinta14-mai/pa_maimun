@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
 class Andalalin extends Model
 {
@@ -21,6 +22,7 @@ class Andalalin extends Model
     public $table = 'andalalins';
     protected $fillable = [
         'user_id',
+        'tracking_id',
         'nama_kategori',
         'nama_pemohon',
         'alamat_pemohon',
@@ -41,14 +43,17 @@ class Andalalin extends Model
         'company_profile',
         'sertifikat_penyusun',
         'dokumen_andalalin',
-        'verifikasi',
         'keterangan',
         'kode',
+        'tgl_tl',
+        'waktu_tl',
         'undangan_rapat',
         'surat_pernyataan',
         'surat_rekom',
-        'tgl_tl',
-        'waktu_tl',
-        'tracking_id'
     ];
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, d F Y H:i');
+    }
 }

@@ -64,68 +64,82 @@
             "
           >
             <div class="bg-white px-4 pt-5 pb-4 mx-auto sm:p-6 sm:pb-4">
-                <div class="mt-3 mx-auto text-center sm:mt-0">
-                  <DialogTitle
-                    as="h3"
-                    class="text-lg leading-6 font-extrabold text-slate-900 uppercase font-roboto"
-                  >
-                    Edit Jadwal Tinjau Lapang
-                  </DialogTitle>
-                  <div class="mt-2">
-                    <form
-                      @submit.prevent="submit"
-                      enctype="multipart/form-data"
-                    >
+              <div class="mt-3 mx-auto text-center sm:mt-0">
+                <DialogTitle
+                  as="h3"
+                  class="
+                    text-lg
+                    leading-6
+                    font-extrabold
+                    text-slate-900
+                    uppercase
+                    font-roboto
+                  "
+                >
+                  Edit Jadwal Tinjau Lapang
+                </DialogTitle>
+                <div class="mt-2">
+                  <form @submit.prevent="submit" enctype="multipart/form-data">
+                    <div class="mt-4">
+                      <jet-label for="tgl_tl" value="Atur Tanggal" />
+                      <jet-input
+                        id="tgl_tl"
+                        type="date"
+                        class="mt-1 block w-1/2 text-center mx-auto"
+                        v-model="form.tgl_tl"
+                        autofocus
+                      />
+                    </div>
 
-                      <div class="mt-4">
-                        <jet-label for="tgl_tl" value="Atur Tanggal" />
-                        <jet-input
-                          id="tgl_tl"
-                          type="date"
-                          class="mt-1 block w-1/2 text-center mx-auto"
-                          v-model="form.tgl_tl"
-                          autofocus
-                        />
-                      </div>
+                    <div class="mt-4">
+                      <jet-label for="waktu_tl" value="Atur Waktu" />
+                      <jet-input
+                        id="waktu_tl"
+                        type="time"
+                        class="mt-1 block w-1/2 text-center mx-auto"
+                        v-model="form.waktu_tl"
+                        autofocus
+                      />
+                    </div>
 
-                      <div class="mt-4">
-                        <jet-label for="waktu_tl" value="Atur Waktu" />
-                        <jet-input
-                          id="waktu_tl"
-                          type="time"
-                          class="mt-1 block w-1/2 text-center mx-auto"
-                          v-model="form.waktu_tl"
-                          autofocus
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        class="
+                    <div class="mt-4 hidden">
+                      <jet-label for="tracking_id" value="Atur Waktu" />
+                      <jet-input
+                        id="tracking_id"
+                        type="number"
+                        class="mt-1 block w-1/2 text-center mx-auto"
+                        v-model="form.tracking_id"
+                        value="5"
+                        autofocus
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      class="
                         mt-10
-                          inline-flex
-                          justify-center
-                          py-2
-                          px-4
-                          border border-transparent
-                          shadow-sm
-                          text-sm
-                          font-medium
-                          rounded-md
-                          text-white
-                          bg-biru
-                          hover:bg-blue-700
-                          focus:outline-none
-                          focus:ring-2
-                          focus:ring-offset-2
-                          focus:ring-blue-500
-                          disabled:bg-slate-900
-                        "
-                      >
-                        Simpan
-                      </button>
-                    </form>
-                  </div>
+                        inline-flex
+                        justify-center
+                        py-2
+                        px-4
+                        border border-transparent
+                        shadow-sm
+                        text-sm
+                        font-medium
+                        rounded-md
+                        text-white
+                        bg-biru
+                        hover:bg-blue-700
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-offset-2
+                        focus:ring-blue-500
+                      "
+                    >
+                      Simpan
+                    </button>
+                  </form>
                 </div>
+              </div>
             </div>
           </div>
         </TransitionChild>
@@ -168,6 +182,7 @@ export default {
       form: {
         tgl_tl: this.andal.tgl_tl,
         waktu_tl: this.andal.waktu_tl,
+        tracking_id: this.andal.tracking_id,
       },
     };
   },

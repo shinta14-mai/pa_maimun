@@ -72,7 +72,7 @@ class PemohonControllers extends Controller
      */
     public function show($id)
     {
-        $andal = Andalalin::with('user')->where('user_id', Auth::user()->id)->get();
+        $andal = Andalalin::with('tracking')->find($id);
         return Inertia::render('Pemohon/Show', [
             'andal' => $andal
         ]);
@@ -99,34 +99,16 @@ class PemohonControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Andalalin $id)
+    public function update(Request $request, $id)
     {
-        // $request->validate([
-        //     'surat_pemohon' => 'required|file',
-        // ]);
+        $request->validate([
+            'tracking_id' => 'required',
+        ]);
 
-        // // if($request->file('surat_pemohon')){
-        // //     $validateData['surat_pemohon'] = $request->file()
-        // // }
-
-        // Andalalin::where('id', $id)->update([
-        //     'surat_pemohon' => $request -> file('surat_pemohon') -> store('surat-permohonan'),
-        // ]);
-
-        $rules = [
-            'surat_pemohon' => 'required|file'
-        ];
-
-        if($request->file("surat_pemohon")){
-            $validateData['surat_pemohon'] = $request->file('surat_pemohon')->store('surat-permohonan');
-        }
-
-        $validateData = $request->validate($rules);
-
-
-
-        Andalalin::where('id', $id)-> update($validateData);
-        return Redirect::route('redirects.index');
+        Andalalin::where('id', $id)->update([
+            'tracking_id' => $request->tracking_id,
+        ]);
+        return Inertia::render('Pemohon/Show');
     }
 
     /**

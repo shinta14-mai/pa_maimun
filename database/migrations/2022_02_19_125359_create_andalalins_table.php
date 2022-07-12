@@ -16,6 +16,7 @@ class CreateAndalalinsTable extends Migration
         Schema::create('andalalins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('tracking_id')->constrained();
             $table->string('nama_kategori');
             $table->string('nama_pemohon');
             $table->text('alamat_pemohon');
@@ -37,11 +38,12 @@ class CreateAndalalinsTable extends Migration
             $table->string('sertifikat_penyusun')->nullable();
             $table->string('dokumen_andalalin')->nullable();
             $table->string('kode');
-            $table->string('verifikasi');
             $table->string('keterangan')->nullable();
             $table->date('tgl_tl')->nullable();
             $table->time('waktu_tl')->nullable();
-            $table->foreignId('tracking_id')->constrained();
+            $table->string('undangan_rapat')->nullable();
+            $table->string('surat_pernyataan')->nullable();
+            $table->string('surat_rekom')->nullable();
             $table->timestamps();
         });
     }

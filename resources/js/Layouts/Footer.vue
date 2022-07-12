@@ -40,7 +40,7 @@
         <div class="mt-6 border-t-2 border-gray-300 flex flex-col items-center">
             <div class="sm:w-2/3 text-center py-2">
                 <p class="text-sm text-blue-700 font-bold mb-2">
-                    © 2021
+                    © 2022
                 </p>
             </div>
         </div>

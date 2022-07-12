@@ -12,7 +12,7 @@
 
     <div class="h-screen ml-14 md:ml-64">
       <div class="max-w-3xl mx-auto sm:px-6 lg:px-2 py-6">
-        <!-- <div class="bg-abu shadow overflow-hidden sm:rounded-lg">
+        <div class="bg-abu shadow overflow-hidden sm:rounded-lg">
           <div class="px-4 py-5 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-white">
               Informasi Pengajuan Dokumen Andalalin
@@ -23,7 +23,7 @@
           </div>
           <div class="border-t border-slate-900">
             <dl>
-                <div
+              <div
                 class="
                   bg-slate-100
                   px-4
@@ -31,7 +31,9 @@
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
               >
-                <dt class="text-sm font-medium text-slate-500">Nama Kategori</dt>
+                <dt class="text-sm font-medium text-slate-500">
+                  Nama Kategori
+                </dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
                   {{ andal.nama_kategori }}
                 </dd>
@@ -44,22 +46,11 @@
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
               >
-                <dt class="text-sm font-medium text-slate-500">Kode Registrasi</dt>
+                <dt class="text-sm font-medium text-slate-500">
+                  Kode Registrasi
+                </dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
                   {{ andal.kode }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">Status Verifikasi</dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.verifikasi }}
                 </dd>
               </div>
               <div
@@ -300,7 +291,7 @@
                             hover:text-indigo-500
                           "
                         >
-                         Lihat Selengkapnya
+                          Lihat Selengkapnya
                         </a>
                       </div>
                     </li>
@@ -485,7 +476,8 @@
                         items-center
                         justify-between
                         text-sm
-                      " v-if="andal.company_profile != null"
+                      "
+                      v-if="andal.company_profile != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -528,7 +520,8 @@
                         items-center
                         justify-between
                         text-sm
-                      " v-if="andal.sertifikat_penyusun != null"
+                      "
+                      v-if="andal.sertifikat_penyusun != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -571,7 +564,8 @@
                         items-center
                         justify-between
                         text-sm
-                      " v-if="andal.dokumen_andalalin != null"
+                      "
+                      v-if="andal.dokumen_andalalin != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -610,52 +604,7 @@
               </div>
             </dl>
           </div>
-        </div> -->
-
-        <form
-                      @submit.prevent="submit"
-                      enctype="multipart/form-data"
-                    >
-                      <div>
-                        <jet-label
-                          for="surat_pemohon"
-                          value="Panduan Pengajuan Andalalin"
-                        />
-                        <jet-input
-                          id="surat_pemohon"
-                          type="file"
-                          class="mt-1 block w-full"
-                          @change="setSP"
-                          autofocus
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        class="
-                          mt-10
-                          inline-flex
-                          justify-center
-                          py-2
-                          px-4
-                          border border-transparent
-                          shadow-sm
-                          text-sm
-                          font-medium
-                          rounded-md
-                          text-white
-                          bg-biru
-                          hover:bg-blue-700
-                          focus:outline-none
-                          focus:ring-2
-                          focus:ring-offset-2
-                          focus:ring-blue-500
-                          disabled:bg-slate-900
-                        "
-                      >
-                        Simpan
-                      </button>
-                    </form>
-
+        </div>
       </div>
     </div>
   </div>
@@ -670,31 +619,14 @@ import JetLabel from "@/Jetstream/Label.vue";
 
 export default defineComponent({
   components: {
-Link,
-Sidebar,
-JetInput,
+    Link,
+    Sidebar,
+    JetInput,
     JetLabel,
   },
 
   props: {
-      andal : Object
-  },
-  data() {
-    return {
-      form: {
-        surat_pemohon: this.andal.surat_pemohon,
-      },
-    };
-  },
-  methods: {
-    submit() {
-        let data = new FormData();
-      data.append("surat_pemohon", this.form.surat_pemohon);
-      this.$inertia.put("/redirects/" + this.andal.id, this.form);
-    },
-    setSP(e) {
-      this.form.surat_pemohon = e.target.files[0];
-    },
+    andal: Object,
   },
 });
 </script>

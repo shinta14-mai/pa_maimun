@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Andalalin;
 use Illuminate\Http\Request;
-use App\Models\Standartek;
-use App\Models\TinjauLapang;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class TinjaulapangControllers extends Controller
+class BerkasControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class TinjaulapangControllers extends Controller
      */
     public function index()
     {
-        return Inertia::render('Tinjaulapang/Index');
+        //
     }
 
     /**
@@ -38,13 +37,7 @@ class TinjaulapangControllers extends Controller
      */
     public function store(Request $request)
     {
-        $upload = new TinjauLapang();
-        $upload->tgl_tl = $request->tgl_tl;
-        $upload->waktu_tl = $request->waktu_tl;
-        $upload->save();
-        return Inertia::render('Admin/DashboardSt', [
-            'st' => Andalalin::orderBy('id', 'DESC')->get()
-        ]);
+        //
     }
 
     /**
@@ -66,7 +59,10 @@ class TinjaulapangControllers extends Controller
      */
     public function edit($id)
     {
-        //
+        $andalalin = Andalalin::find($id);
+        return Inertia::render('Berkas/Edit', [
+            'andalalin' => $andalalin
+        ]);
     }
 
     /**
@@ -78,7 +74,32 @@ class TinjaulapangControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'undangan_rapat' => ['nullable', 'file'],
+            'surat_pernyataan' => ['nullable', 'file'],
+            'surat_rekom' => ['nullable', 'file'],
+        ]);
+
+        if($request->file('undangan_rapat')){
+            Andalalin::where('id', $id)->update([
+                'undangan_rapat' => $request->file('undangan_rapat')? $request -> file('undangan_rapat')->store('unggah-undangan_rapat'):null,
+                'tracking_id' => $request->tracking_id,
+            ]);
+        };
+        if($request->file('surat_pernyataan')){
+            Andalalin::where('id', $id)->update([
+                'surat_pernyataan' => $request->file('surat_pernyataan')? $request -> file('surat_pernyataan')->store('unggah-surat_pernyataan'):null,
+                'tracking_id' => $request->tracking_id,
+            ]);
+        };
+        if($request->file('surat_rekom')){
+            Andalalin::where('id', $id)->update([
+                'surat_rekom' => $request->file('surat_rekom')? $request -> file('surat_rekom')->store('unggah-surat_rekom'):null,
+                'tracking_id' => $request->tracking_id,
+            ]);
+        };
+
+        return Redirect::route('andal.index');
     }
 
     /**

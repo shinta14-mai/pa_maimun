@@ -22,10 +22,10 @@
                           px-5
                           py-5
                           border-b-2 border-slate-900
-                          bg-slate-50
+                          bg-biru
                           text-left text-xs
                           font-semibold
-                          text-slate-900
+                          text-slate-50
                           uppercase
                           tracking-wider
                         "
@@ -49,8 +49,8 @@
                           target="_blank"
                           rel="noopener noreferrer"
                           class="
-                            font-medium
-                            text-indigo-600
+                            tracking-wider text-sm
+                            text-slate-900
                             hover:text-indigo-500
                           "
                         >
@@ -65,10 +65,10 @@
                           px-5
                           py-5
                           border-b-2 border-slate-900
-                          bg-slate-50
+                          bg-biru
                           text-left text-xs
                           font-semibold
-                          text-slate-900
+                          text-slate-50
                           uppercase
                           tracking-wider
                         "
@@ -92,8 +92,8 @@
                           target="_blank"
                           rel="noopener noreferrer"
                           class="
-                            font-medium
-                            text-indigo-600
+                            tracking-wider text-sm
+                            text-slate-900
                             hover:text-indigo-500
                           "
                         >
@@ -108,10 +108,10 @@
                           px-5
                           py-5
                           border-b-2 border-slate-900
-                          bg-slate-50
+                          bg-biru
                           text-left text-xs
                           font-semibold
-                          text-slate-900
+                          text-slate-50
                           uppercase
                           tracking-wider
                         "
@@ -135,8 +135,8 @@
                           target="_blank"
                           rel="noopener noreferrer"
                           class="
-                            font-medium
-                            text-indigo-600
+                            tracking-wider text-sm
+                            text-slate-900
                             hover:text-indigo-500
                           "
                         >
@@ -151,10 +151,10 @@
                           px-5
                           py-5
                           border-b-2 border-slate-900
-                          bg-slate-50
+                          bg-biru
                           text-left text-xs
                           font-semibold
-                          text-slate-900
+                          text-slate-50
                           uppercase
                           tracking-wider
                         "
@@ -178,8 +178,8 @@
                           target="_blank"
                           rel="noopener noreferrer"
                           class="
-                            font-medium
-                            text-indigo-600
+                            tracking-wider text-sm
+                            text-slate-900
                             hover:text-indigo-500
                           "
                         >

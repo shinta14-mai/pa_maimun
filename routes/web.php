@@ -7,6 +7,7 @@ use App\Http\Controllers\AndalalinControllers;
 use App\Http\Controllers\PemohonControllers;
 use App\Http\Controllers\InfoControllers;
 use App\Http\Controllers\TlControllers;
+use App\Http\Controllers\UrControllers;
 use App\Http\Controllers\BerkasControllers;
 use App\Models\Info;
 
@@ -37,7 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->resource('info', InfoControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('andal', AndalalinControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TinjaulapangControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('redirects', PemohonControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TlControllers::class);
-
+Route::middleware(['auth:sanctum', 'verified'])->resource('redirects', PemohonControllers::class);
+Route::middleware(['auth:sanctum', 'verified'])->resource('berkas', BerkasControllers::class);
+Route::middleware(['auth:sanctum', 'verified'])->resource('ur', UrControllers::class);

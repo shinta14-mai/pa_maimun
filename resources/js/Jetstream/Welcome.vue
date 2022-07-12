@@ -26,7 +26,7 @@
                   </div>
                   <div class="order-1 bg-gray-300 rounded-lg shadow-xl w-5/12 px-6 py-4">
                     <h3 class="mb-3 font-bold text-blue-900 text-xl">Sekilas Tentang Kami</h3>
-                    <p class="text-sm leading-snug tracking-wide text-blue-900 text-opacity-100">Dinas Perhubungan Kabupaten Banyuwangi adalah penyedia layanan pengajuan rekomendasi analisa dampak lalu lintas, rekomendasi teknis dan standar teknis berbasis web untuk mempermudah pemohon baik perusahaan atau perseorangan.</p>
+                    <p class="text-sm leading-snug tracking-wide text-blue-900 text-opacity-100">Dinas Perhubungan Kabupaten Banyuwangi merupakan penyedia layanan pengajuan rekomendasi analisis dampak lalu lintas berbasis web untuk mempermudah pemohon membuat pengajuan dimanapun dan kapanpun.</p>
                   </div>
                 </div>
                 <!-- left timeline -->
@@ -38,7 +38,7 @@
                   </div>
                   <div class="order-1 bg-blue-900 rounded-lg shadow-xl w-5/12 px-6 py-4">
                     <h3 class="mb-3 font-bold text-gray-300 text-xl">Singkat Cerita</h3>
-                    <p class="text-sm font-medium leading-snug tracking-wide text-white text-opacity-100">Sistem ini diciptakan untuk menjawab keresahan pemohon selama pandemi covid-19 yang mengharuskan membatasi interaksi sehingga banyak permohonan yang tertunda. Dengan hadirnya website ini pemohon dapat mengakses pengajuan dengan mudah, aman dan nyaman.</p>
+                    <p class="text-sm font-medium leading-snug tracking-wide text-white text-opacity-100">Aplikasi ini dibangun untuk memudahkan pemohon memantau proses pengajuan andalalin dan membantu petugas dalam mengelola berkas permohonan. Dengan hadirnya website ini diharapkan pemohon dapat mengakses pengajuan dengan mudah, aman dan nyaman.</p>
                   </div>
                 </div>
               </div>

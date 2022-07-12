@@ -77,14 +77,16 @@ class TlControllers extends Controller
         $request->validate([
             'tgl_tl' => 'required',
             'waktu_tl' => 'required',
+            'tracking_id' => 'required'
         ]);
 
         Andalalin::where('id', $id)->update([
             'tgl_tl' => $request->tgl_tl,
             'waktu_tl' => $request->waktu_tl,
+            'tracking_id' => 5,
         ]);
 
-        return Redirect::route('redirects.index');
+        return Redirect::route('andal.index');
     }
 
     /**

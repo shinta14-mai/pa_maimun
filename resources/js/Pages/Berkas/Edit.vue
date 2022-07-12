@@ -76,11 +76,15 @@
                     font-roboto
                   "
                 >
-                  Edit Status Verifikasi
+                  Unggah Dokumen
                 </DialogTitle>
                 <div class="mt-2">
-                  <form @submit.prevent="submit" enctype="multipart/form-data">
+                  <form @submit.prevent="update" enctype="multipart/form-data">
                     <div class="mt-4">
+                      <jet-label
+                        for="tracking_id"
+                        value="Pilih File yang Akan Diunggah"
+                      />
                       <select
                         class="
                           form-control
@@ -96,24 +100,28 @@
                         "
                         v-model="form.tracking_id"
                       >
-                        <option value="1" disabled>Terkirim</option>
-                        <option value="2">Diperiksa</option>
-                        <option value="3">Diterima</option>
-                        <option value="4">Ditolak</option>
+                        <option value="6">Undangan Rapat</option>
+                        <option value="7">Surat Pernyataan</option>
+                        <option value="8">Surat Rekomendasi</option>
                       </select>
                     </div>
-                    <div class="mt-8" v-if="andal.tracking_id == 2">
+                    <div class="mt-4" v-if="andalalin.tracking_id == 5">
+                      <jet-label for="undangan_rapat" value="Undangan Rapat" class="hidden"/>
+                      <file-input v-model="form.undangan_rapat" type="file" />
+                    </div>
+
+                    <div class="mt-4" v-if="andalalin.tracking_id == 6">
                       <jet-label
-                        for="keterangan"
-                        value="Tambahkan Keterangan Jika Pengajuan Ditolak"
+                        for="surat_pernyataan"
+                        value="Surat Pernyataan"
+                        class="hidden"
                       />
-                      <jet-input
-                        id="keterangan"
-                        type="text"
-                        class="mt-1 block mx-auto w-1/2"
-                        v-model="form.keterangan"
-                        autofocus
-                      />
+                      <file-input v-model="form.surat_pernyataan" type="file" />
+                    </div>
+
+                    <div class="mt-4" v-if="andalalin.tracking_id == 7">
+                      <jet-label for="surat_rekom" value="Surat Rekomendasi" class="hidden"/>
+                      <file-input v-model="form.surat_rekom" type="file" />
                     </div>
                     <button
                       type="submit"
@@ -159,9 +167,9 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import JetInput from "@/Jetstream/Input.vue";
 import JetLabel from "@/Jetstream/Label.vue";
-// import { ExclamationIcon } from '@heroicons/vue/outline'
+import FileInput from "@/Shared/FileInput";
+
 export default {
   components: {
     Dialog,
@@ -169,9 +177,8 @@ export default {
     DialogTitle,
     TransitionChild,
     TransitionRoot,
-    JetInput,
     JetLabel,
-    // ExclamationIcon,
+    FileInput,
   },
   setup() {
     const open = ref(true);
@@ -179,20 +186,26 @@ export default {
       open,
     };
   },
+  props: {
+    andalalin: Object,
+  },
+  remember: "form",
   data() {
     return {
-      form: {
-        tracking_id: this.andal.tracking_id,
-        keterangan: this.andal.keterangan,
-      },
+      form: this.$inertia.form({
+        _method: "put",
+        undangan_rapat: null,
+        surat_pernyataan: null,
+        surat_rekom: null,
+        tracking_id: null,
+      }),
     };
   },
-  props: {
-    andal: Object,
-  },
   methods: {
-    submit() {
-      this.$inertia.put("/andal/" + this.andal.id, this.form);
+    update() {
+      this.form.post(`/berkas/${this.andalalin.id}`, {
+        onSuccess: () => this.form.reset("file"),
+      });
     },
   },
 };

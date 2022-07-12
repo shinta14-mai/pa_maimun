@@ -39,36 +39,6 @@ class AndalalinControllers extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required',
-            'nama_kategori' => 'required',
-            'nama_pemohon' => 'required',
-            'alamat_pemohon' => 'required',
-            'no_tlp' => 'required',
-            'jenis_usaha' => 'required',
-            'alamat_usaha' => 'required',
-            'luas_lahan' => 'required',
-            'luas_bangunan' => 'required',
-            'status_lahan' => 'required',
-            'kapasitas' => 'required',
-            'email_pemohon' => 'required',
-            'surat_pemohon' => 'required|file',
-            'ktp' => 'required|file',
-            'sertifikat_tanah' => 'required|file',
-            'ktr' => 'required|file',
-            'rencana_tapak' => 'required|file',
-            'desain_bangunan' => 'required|file',
-            'company_profile' => 'nullable|file',
-            'sertifikat_penyusun' => 'nullable|file',
-            'dokumen_andalalin' => 'nullable|file',
-            'kode' => 'required',
-            'verifikasi' => 'required',
-            'keterangan' => 'required',
-            'tgl_tl' => 'required',
-            'waktu_tl' => 'required',
-            'tracking_id' =>'required',
-
-        ]);
         $characters = '0123456789';
         $charactersNumber = strlen($characters);
 
@@ -97,7 +67,7 @@ class AndalalinControllers extends Controller
 
         Andalalin::insert([
             'user_id' => auth()->id(),
-            // 'tracking_id' => 1,
+            'tracking_id' => 1,
             'nama_kategori' => $request -> input('nama_kategori'),
             'nama_pemohon' => $request -> input('nama_pemohon'),
             'alamat_pemohon' => $request -> input('alamat_pemohon'),
@@ -110,8 +80,7 @@ class AndalalinControllers extends Controller
             'kapasitas' => $request -> input('kapasitas'),
             'email_pemohon' => $request -> input('email_pemohon'),
             'kode' => $request -> kode = $codeR,
-            'keterangan' => $request -> keterangan = 'NULL',
-            'verifikasi' => $request -> verifikasi = 'Diperiksa',
+            'keterangan' => $request -> keterangan = null,
             'surat_pemohon' => $request -> file('surat_pemohon') ? $request -> file('surat_pemohon') -> store('surat-permohonan', 'public') : null,
             'ktp' => $request -> file('ktp') ? $request -> file('ktp') -> store('ktp', 'public') : null,
             'sertifikat_tanah' => $request -> file('sertifikat_tanah') ? $request -> file('sertifikat_tanah') -> store('sertifikat-tanah', 'public') : null,
@@ -163,17 +132,19 @@ class AndalalinControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Andalalin $andal)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'surat_pemohon' => ['nullable', 'file'],
+            'tracking_id' => 'required',
+            'keterangan' => 'nullable',
         ]);
 
-        if($request->file('surat_pemohon')){
-            $andal->update(['surat_pemohon' => $request->file('surat_pemohon')->store('surat-permohonan')]);
-        };
+        Andalalin::where('id', $id)->update([
+            'tracking_id' => $request->tracking_id,
+            'keterangan' => $request->keterangan,
+        ]);
 
-        return Redirect::route('redirects.index');
+        return Redirect::route('andal.index');
     }
 
     /**

@@ -180,30 +180,51 @@
                       >
                         <div
                           class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tracking_id == 1"
                         >
-                          {{ ad.verifikasi }}
+                          TERKIRIM
                         </div>
                         <div
                           class="text-slate-900 uppercase whitespace-no-wrap"
-                          v-if="ad.tgl_tl != null"
+                          v-if="ad.tracking_id == 2"
                         >
-                          Tinjau Lapang
-                          <span class="inline-flex justify-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="green"
-                              stroke-width="2"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                          </span>
+                          DIPERIKSA
+                        </div>
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tracking_id == 3"
+                        >
+                          DITERIMA
+                        </div>
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tracking_id == 4"
+                        >
+                          DITOLAK
+                        </div>
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tracking_id == 5"
+                        >
+                          TINJAU LAPANG
+                        </div>
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tracking_id == 6"
+                        >
+                          UNDANGAN RAPAT
+                        </div>
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tracking_id == 7"
+                        >
+                          SURAT PERNYATAAN
+                        </div>
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tracking_id == 8"
+                        >
+                          PENGAJUAN SELESAI
                         </div>
                       </td>
                       <td
@@ -224,7 +245,7 @@
                             leading-5
                             font-semibold
                             rounded-lg
-                            bg-slate-700
+                            bg-slate-900
                             hover:bg-slate-500
                             text-white
                             hover:text-slate-50
@@ -251,13 +272,13 @@
                             leading-5
                             font-semibold
                             rounded-lg
-                            bg-gold
-                            hover:bg-amber-300
-                            text-black
+                            bg-slate-700
+                            hover:bg-slate-300
+                            text-white
                             hover:text-slate-900
                           "
                         >
-                          <Link :href="`/andal/${ad.id}/edit`">Verifikasi</Link>
+                          <Link :href="`/andal/${ad.id}/edit`">Status</Link>
                         </span>
                         <span
                           class="
@@ -289,13 +310,13 @@
                             leading-5
                             font-semibold
                             rounded-lg
-                            bg-abu
-                            hover:bg-gray-300
+                            bg-gold
+                            hover:bg-amber-300
                             text-white
-                            hover:text-slate-600
+                            hover:text-slate-900
                           "
                         >
-                          <Link :href="`/berkas/${ad.id}/edit`">Pengajuan</Link>
+                          <Link :href="`/berkas/${ad.id}/edit`">Unggah</Link>
                         </span>
                       </td>
                     </tr>
