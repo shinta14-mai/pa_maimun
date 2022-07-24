@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AndalalinControllers;
 use App\Http\Controllers\PemohonControllers;
+use App\Http\Controllers\PengajuanControllers;
 use App\Http\Controllers\InfoControllers;
 use App\Http\Controllers\TlControllers;
-use App\Http\Controllers\UrControllers;
 use App\Http\Controllers\BerkasControllers;
 use App\Models\Info;
 
@@ -41,4 +41,4 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('andal', AndalalinCont
 Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TlControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('redirects', PemohonControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('berkas', BerkasControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('ur', UrControllers::class);
+Route::middleware(['auth:sanctum', 'verified'])->resource('pengajuan', PengajuanControllers::class);

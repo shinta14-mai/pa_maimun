@@ -1,5 +1,5 @@
 <template>
- <Head title="Dashboard" />
+  <Head title="Dashboard" />
   <div
     class="
       min-h-screen
@@ -62,9 +62,18 @@
               </div>
             </div>
           </div>
-          <div class="p-4">
+          <div>
+            <span class="inline-flex justify-center items-center">
               <jet-label for="search" value="Search" />
-              <jet-input id="search" type="text" v-model="term" @keyup="search" class="ml-2 px-2 py-1 text-sm rounded border" />
+            </span>
+            <span class="text-slate-50 ml-2 text-sm tracking-wide truncate"
+              ><input
+                id="search"
+                type="text"
+                v-model="term"
+                @keyup="search"
+                class="ml-2 px-2 py-1 text-sm rounded border"
+            /></span>
           </div>
           <div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -138,7 +147,7 @@
                           tracking-wider
                         "
                       >
-                        status pengajuan
+                        persyaratan
                       </th>
                       <th
                         class="
@@ -146,14 +155,14 @@
                           py-3
                           border-b-2 border-slate-900
                           bg-abu
-                          text-left text-xs
+                          text-center text-xs
                           font-semibold
                           text-slate-50
                           uppercase
                           tracking-wider
                         "
                       >
-                        persyaratan
+                        status pengajuan
                       </th>
                     </tr>
                   </thead>
@@ -216,10 +225,10 @@
                             leading-5
                             font-semibold
                             rounded-lg
-                            bg-abu
-                            hover:bg-slate-500
-                            text-white
-                            hover:text-slate-50
+                            bg-gold
+                            hover:bg-yellow-400
+                            text-black
+                            hover:text-slate-900
                           "
                         >
                           <Link :href="`/redirects/${ad.id}`">Details</Link>
@@ -234,23 +243,51 @@
                           text-sm
                         "
                       >
-                        <span
-                          class="
-                            px-2
-                            py-1
-                            inline-flex
-                            text-sm
-                            leading-5
-                            font-semibold
-                            rounded-lg
-                            bg-biru
-                            hover:bg-slate-500
-                            text-white
-                            hover:text-slate-50
-                          "
+                        <p class="text-slate-700 text-xs whitespace-no-wrap">
+                          {{ ad.updated_at }}
+                        </p>
+                        <p class="text-green-700 mb-2 whitespace-no-wrap">
+                          {{ ad.tracking.keterangan }}
+                        </p>
+                        <Link
+                          class="text-blue-600 hover:text-blue-500 text-xs"
+                          :href="`/redirects/${ad.id}/edit`"
+                          v-if="ad.tracking_id == 4"
+                          >Edit Pengajuan</Link
                         >
-                          <Link :href="`/redirects/${ad.id}/edit`">Details</Link>
-                        </span>
+                        <p
+                          class="text-blue-600 text-xs whitespace-no-wrap mt-2"
+                          v-if="ad.tracking_id == 5"
+                        >
+                          {{ ad.tgl_tl }} WIB
+                        </p>
+                        <a
+                          :href="`/storage/${ad.undangan_rapat}`"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-blue-600 hover:text-blue-500 text-xs"
+                          v-if="ad.tracking_id == 6"
+                        >
+                          Lihat Undangan Rapat
+                        </a>
+                        <a
+                          :href="`/storage/${ad.surat_pernyataan}`"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-blue-600 hover:text-blue-500 text-xs"
+                          v-if="ad.tracking_id == 7"
+                        >
+                          Lihat Surat Pernyataan
+                        </a>
+                        <a
+                          :href="`/storage/${ad.surat_rekom}`"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-blue-600 hover:text-blue-500 text-xs"
+                          v-if="ad.tracking_id == 8"
+                        >
+                          Lihat Surat Rekomendasi Andalalin
+                        </a>
                       </td>
                     </tr>
                   </tbody>
@@ -268,16 +305,18 @@
                   "
                 >
                   <span class="text-xs xs:text-sm text-gray-900">
-                    Showing 1 to 4 of 50 Entries
+                    Menampilkan {{ andal.from }} - {{ andal.to }} dari
+                    {{ andal.total }} Pengajuan
                   </span>
                   <div class="inline-flex mt-2 xs:mt-0">
-                    <Link :href="andal.prev_page_url"
+                    <Link
+                      :href="andal.prev_page_url"
                       class="
-                        text-sm text-indigo-50
+                        text-sm text-slate-50
                         transition
                         duration-150
-                        hover:bg-indigo-500
-                        bg-indigo-600
+                        hover:bg-slate-500
+                        bg-biru
                         font-semibold
                         py-2
                         px-4
@@ -288,13 +327,13 @@
                     </Link>
                     &nbsp; &nbsp;
                     <Link
-                    :href="andal.next_page_url"
+                      :href="andal.next_page_url"
                       class="
-                        text-sm text-indigo-50
+                        text-sm text-slate-50
                         transition
                         duration-150
-                        hover:bg-indigo-500
-                        bg-indigo-600
+                        hover:bg-slate-500
+                        bg-biru
                         font-semibold
                         py-2
                         px-4
@@ -320,7 +359,7 @@ import Sidebar from "@/Layouts/Sidebar.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import JetInput from "@/Jetstream/Input.vue";
 import JetLabel from "@/Jetstream/Label.vue";
-import __ from 'lodash';
+import __ from "lodash";
 
 export default defineComponent({
   components: {
@@ -330,18 +369,18 @@ export default defineComponent({
     JetInput,
     JetLabel,
   },
-  data(){
-      return{
-          term: '',
-      }
+  data() {
+    return {
+      term: "",
+    };
   },
   props: {
     andal: Object,
   },
-  methods:{
-      search: _.throttle(function(){
-          this.$inertia.replace(this.$route('redirects.index', {term: this.term}))
-      }, 200)
+  methods: {
+    search: _.throttle(function () {
+      this.$inertia.get("/redirects/", { term: this.term });
+    }),
   },
 });
 </script>

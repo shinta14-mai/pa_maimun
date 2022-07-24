@@ -2,6 +2,19 @@
   <app-layout title="Admin Dashboard">
     <div class="py-4">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-2">
+        <div class="p-4">
+          <span class="inline-flex justify-center items-center">
+            <jet-label for="search" value="Search" />
+          </span>
+          <span class="text-slate-50 ml-2 text-sm tracking-wide truncate"
+            ><input
+              id="search"
+              type="text"
+              v-model="term"
+              @keyup="search"
+              class="ml-2 px-2 py-1 text-sm rounded border"
+          /></span>
+        </div>
         <div class="bg-slate-50 shadow-xl sm:rounded-lg">
           <div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -110,7 +123,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="ad in andal" :key="ad.id">
+                    <tr v-for="ad in andal.data" :key="ad.id">
                       <td
                         class="
                           px-5
@@ -182,7 +195,7 @@
                           class="text-slate-900 uppercase whitespace-no-wrap"
                           v-if="ad.tracking_id == 1"
                         >
-                          TERKIRIM
+                          PENGAJUAN BARU
                         </div>
                         <div
                           class="text-slate-900 uppercase whitespace-no-wrap"
@@ -226,6 +239,15 @@
                         >
                           PENGAJUAN SELESAI
                         </div>
+                        <div
+                          class="text-slate-900 whitespace-no-wrap"
+                          v-if="ad.tracking_id == 9"
+                        >
+                          PENGAJUAN TELAH DIEDIT <br>
+                          <div class="text-slate-500 whitespace-no-wrap text-xs">
+                          Terakhir diubah : {{ ad.updated_at }}
+                        </div>
+                        </div>
                       </td>
                       <td
                         class="
@@ -245,11 +267,11 @@
                             leading-5
                             font-semibold
                             rounded-lg
-                            bg-slate-900
+                            bg-biru
                             hover:bg-slate-500
                             text-white
                             hover:text-slate-50
-                          "
+                          " v-if="ad.tracking_id > 1"
                         >
                           <Link :href="`/andal/${ad.id}`">Details</Link>
                         </span>
@@ -260,23 +282,26 @@
                           py-5
                           border-b border-gray-200
                           bg-white
-                          text-sm
+                          text-sm text-center
                         "
                       >
                         <span
                           class="
                             px-2
                             py-1
+                            sm:ml-2
+                            mt-2
                             inline-flex
                             text-sm
                             leading-5
                             font-semibold
                             rounded-lg
-                            bg-slate-700
-                            hover:bg-slate-300
+                            bg-gold
+                            hover:bg-amber-300
                             text-white
                             hover:text-slate-900
                           "
+                          v-if="ad.tracking_id == 1 || ad.tracking_id == 2 || ad.tracking_id == 4 || ad.tracking_id == 9"
                         >
                           <Link :href="`/andal/${ad.id}/edit`">Status</Link>
                         </span>
@@ -291,11 +316,12 @@
                             leading-5
                             font-semibold
                             rounded-lg
-                            bg-abu
-                            hover:bg-gray-300
+                            bg-gold
+                            hover:bg-amber-300
                             text-white
-                            hover:text-slate-600
+                            hover:text-slate-900
                           "
+                          v-else-if="ad.tracking_id == 3"
                         >
                           <Link :href="`/tl/${ad.id}/edit`">Tinjau Lapang</Link>
                         </span>
@@ -315,6 +341,7 @@
                             text-white
                             hover:text-slate-900
                           "
+                          v-else
                         >
                           <Link :href="`/berkas/${ad.id}/edit`">Unggah</Link>
                         </span>
@@ -335,16 +362,18 @@
                   "
                 >
                   <span class="text-xs xs:text-sm text-gray-900">
-                    Showing 1 to 4 of 50 Entries
+                    Menampilkan {{ andal.from }} - {{ andal.to }} dari
+                    {{ andal.total }} Pengajuan
                   </span>
                   <div class="inline-flex mt-2 xs:mt-0">
-                    <button
+                    <Link
+                      :href="andal.prev_page_url"
                       class="
-                        text-sm text-indigo-50
+                        text-sm text-slate-50
                         transition
                         duration-150
-                        hover:bg-indigo-500
-                        bg-indigo-600
+                        hover:bg-slate-500
+                        bg-biru
                         font-semibold
                         py-2
                         px-4
@@ -352,15 +381,16 @@
                       "
                     >
                       Prev
-                    </button>
+                    </Link>
                     &nbsp; &nbsp;
-                    <button
+                    <Link
+                      :href="andal.next_page_url"
                       class="
-                        text-sm text-indigo-50
+                        text-sm text-slate-50
                         transition
                         duration-150
-                        hover:bg-indigo-500
-                        bg-indigo-600
+                        hover:bg-slate-500
+                        bg-biru
                         font-semibold
                         py-2
                         px-4
@@ -368,7 +398,7 @@
                       "
                     >
                       Next
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -384,14 +414,27 @@
 import { defineComponent } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import JetLabel from "@/Jetstream/Label.vue";
+import __ from "lodash";
 
 export default defineComponent({
   components: {
     AppLayout,
     Link,
+    JetLabel,
+  },
+  data() {
+    return {
+      term: "",
+    };
   },
   props: {
     andal: Object,
+  },
+  methods: {
+    search: _.throttle(function () {
+      this.$inertia.get("/andal/", { term: this.term });
+    }),
   },
 });
 </script>

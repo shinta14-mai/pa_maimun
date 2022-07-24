@@ -13,6 +13,21 @@
           </div>
           <div class="border-t border-slate-900">
             <dl>
+                <div
+                class="
+                  bg-slate-100
+                  px-4
+                  py-4
+                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
+                " v-if="andal.keterangan != null"
+              >
+                <dt class="text-sm font-medium text-slate-500">
+                  Keterangan Penolakan Pengajuan
+                </dt>
+                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
+                  {{ andal.keterangan }}
+                </dd>
+              </div>
               <div
                 class="
                   bg-slate-100
@@ -41,21 +56,6 @@
                 </dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
                   {{ andal.kode }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">
-                  Status Verifikasi
-                </dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.verifikasi }}
                 </dd>
               </div>
               <div

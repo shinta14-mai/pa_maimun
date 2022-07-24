@@ -39,8 +39,7 @@ class CreateAndalalinsTable extends Migration
             $table->string('dokumen_andalalin')->nullable();
             $table->string('kode');
             $table->string('keterangan')->nullable();
-            $table->date('tgl_tl')->nullable();
-            $table->time('waktu_tl')->nullable();
+            $table->timestamp('tgl_tl')->nullable();
             $table->string('undangan_rapat')->nullable();
             $table->string('surat_pernyataan')->nullable();
             $table->string('surat_rekom')->nullable();

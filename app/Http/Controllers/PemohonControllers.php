@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Andalalin;
+use App\Models\Tracking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,6 @@ class PemohonControllers extends Controller
     public function index(Request $request)
     {
         $role = Auth::user()->role;
-        $andal = Andalalin::with('user')->where('user_id', Auth::user()->id)->get();
         $user = Andalalin::with('user')->where('user_id', Auth::user()->id)->count();
 
         if($role == 'admin')
@@ -30,10 +30,9 @@ class PemohonControllers extends Controller
         elseif($user >= 1)
         {
             return Inertia::render('Pemohon/Index', [
-                // 'andal' => $andal
                 'andal' => Andalalin::when($request->term, function ($query, $term){
-                    $query->where('title', 'LIKE', '%'.$term.'%');
-                })->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate()
+                    $query->where('nama_pemohon', 'LIKE', '%'.$term.'%');
+                })->with('tracking')->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate(3)
             ]);
         }
         else
@@ -74,7 +73,7 @@ class PemohonControllers extends Controller
     {
         $andal = Andalalin::with('tracking')->find($id);
         return Inertia::render('Pemohon/Show', [
-            'andal' => $andal
+            'andal' => $andal,
         ]);
     }
 
@@ -86,9 +85,9 @@ class PemohonControllers extends Controller
      */
     public function edit($id)
     {
-        $user = Andalalin::find($id);
+        $andalalin = Andalalin::find($id);
         return Inertia::render('Pemohon/Edit', [
-            'andal' => $user
+            'andalalin' => $andalalin
         ]);
     }
 
@@ -102,13 +101,73 @@ class PemohonControllers extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'tracking_id' => 'required',
+            'surat_pemohon' => ['nullable', 'file'],
+            'ktp' => ['nullable', 'file'],
+            'sertifikat_tanah' => ['nullable', 'file'],
+            'ktr' => ['nullable', 'file'],
+            'rencana_tapak' => ['nullable', 'file'],
+            'desain_bangunan' => ['nullable', 'file'],
+            'company_profile' => ['nullable', 'file'],
+            'sertifikat_penyusun' => ['nullable', 'file'],
+            'dokumen_andalalin' => ['nullable', 'file'],
         ]);
 
-        Andalalin::where('id', $id)->update([
-            'tracking_id' => $request->tracking_id,
-        ]);
-        return Inertia::render('Pemohon/Show');
+        if($request->file('surat_pemohon')){
+            Andalalin::where('id', $id)->update([
+                'surat_pemohon' => $request->file('surat_pemohon')? $request -> file('surat_pemohon')->store('surat_pemohon'):null,
+                'tracking_id' => 9
+            ]);
+        };
+        if($request->file('ktp')){
+            Andalalin::where('id', $id)->update([
+                'ktp' => $request->file('ktp')? $request -> file('ktp')->store('ktp'):null,
+                'tracking_id' => 9
+            ]);
+        };
+        if($request->file('sertifikat_tanah')){
+            Andalalin::where('id', $id)->update([
+                'sertifikat_tanah' => $request->file('sertifikat_tanah')? $request -> file('sertifikat_tanah')->store('sertifikat_tanah'):null,
+                'tracking_id' => 9
+            ]);
+        };
+        if($request->file('ktr')){
+            Andalalin::where('id', $id)->update([
+                'ktr' => $request->file('ktr')? $request -> file('ktr')->store('ktr'):null,
+                'tracking_id' => 9
+            ]);
+        };
+        if($request->file('rencana_tapak')){
+            Andalalin::where('id', $id)->update([
+                'rencana_tapak' => $request->file('rencana_tapak')? $request -> file('rencana_tapak')->store('rencana_tapak'):null,
+                'tracking_id' => 9
+            ]);
+        };
+        if($request->file('desain_bangunan')){
+            Andalalin::where('id', $id)->update([
+                'desain_bangunan' => $request->file('desain_bangunan')? $request -> file('desain_bangunan')->store('desain_bangunan'):null,
+                'tracking_id' => 9
+            ]);
+        };
+        if($request->file('company_profile')){
+            Andalalin::where('id', $id)->update([
+                'company_profile' => $request->file('company_profile')? $request -> file('company_profile')->store('company_profile'):null,
+                'tracking_id' => 9
+            ]);
+        };
+        if($request->file('sertifikat_penyusun')){
+            Andalalin::where('id', $id)->update([
+                'sertifikat_penyusun' => $request->file('sertifikat_penyusun')? $request -> file('sertifikat_penyusun')->store('sertifikat_penyusun'):null,
+                'tracking_id' => 9
+            ]);
+        };
+        if($request->file('dokumen_andalalin')){
+            Andalalin::where('id', $id)->update([
+                'dokumen_andalalin' => $request->file('dokumen_andalalin')? $request -> file('dokumen_andalalin')->store('dokumen_andalalin'):null,
+                'tracking_id' => 9
+            ]);
+        };
+
+        return Inertia::render('Pemohon/Store');
     }
 
     /**

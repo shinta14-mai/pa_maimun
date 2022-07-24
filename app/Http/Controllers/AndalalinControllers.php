@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Andalalin;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
@@ -14,10 +15,15 @@ class AndalalinControllers extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Andalalin/Index', [
-            'andal' => Andalalin::orderBy('id', 'DESC')->get()
+            'andal' => Andalalin::when($request->term, function ($query, $term){
+                $query->where('nama_pemohon', 'LIKE', '%'.$term.'%')
+                ->orWhere('jenis_usaha', 'LIKE', '%'.$term.'%')
+                ->orWhere('kode', 'LIKE', '%'.$term.'%')
+                ->orWhere('alamat_usaha', 'LIKE', '%'.$term.'%');
+            })->orderBy('id', 'DESC')->paginate(10)
         ]);
     }
 

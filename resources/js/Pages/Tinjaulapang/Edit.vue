@@ -84,20 +84,9 @@
                       <jet-label for="tgl_tl" value="Atur Tanggal" />
                       <jet-input
                         id="tgl_tl"
-                        type="date"
+                        type="datetime-local"
                         class="mt-1 block w-1/2 text-center mx-auto"
                         v-model="form.tgl_tl"
-                        autofocus
-                      />
-                    </div>
-
-                    <div class="mt-4">
-                      <jet-label for="waktu_tl" value="Atur Waktu" />
-                      <jet-input
-                        id="waktu_tl"
-                        type="time"
-                        class="mt-1 block w-1/2 text-center mx-auto"
-                        v-model="form.waktu_tl"
                         autofocus
                       />
                     </div>
@@ -181,7 +170,6 @@ export default {
     return {
       form: {
         tgl_tl: this.andal.tgl_tl,
-        waktu_tl: this.andal.waktu_tl,
         tracking_id: this.andal.tracking_id,
       },
     };

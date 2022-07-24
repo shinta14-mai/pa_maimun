@@ -46,12 +46,7 @@
                     rounded-xl
                     space-y-6
                     overflow-hidden
-                    transition-all
-                    duration-500
-                    transform
-                    hover:-translate-y-6 hover:scale-105
                     shadow-xl
-                    hover:shadow-2xl
                     cursor-auto
                   "
                 >
@@ -89,12 +84,7 @@
                     rounded-xl
                     space-y-6
                     overflow-hidden
-                    transition-all
-                    duration-500
-                    transform
-                    hover:-translate-y-6 hover:scale-105
                     shadow-xl
-                    hover:shadow-2xl
                     cursor-auto
                   "
                 >
@@ -133,12 +123,7 @@
                     rounded-xl
                     space-y-6
                     overflow-hidden
-                    transition-all
-                    duration-500
-                    transform
-                    hover:-translate-y-6 hover:scale-105
                     shadow-xl
-                    hover:shadow-2xl
                     cursor-auto
                   "
                 >

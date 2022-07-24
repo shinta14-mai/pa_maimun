@@ -96,8 +96,8 @@
                         "
                         v-model="form.tracking_id"
                       >
-                        <option value="1" disabled>Terkirim</option>
-                        <option value="2">Diperiksa</option>
+                        <option value="1" disabled>Pengajuan Baru</option>
+                        <option value="2">Konfirmasi Pengajuan</option>
                         <option value="3">Diterima</option>
                         <option value="4">Ditolak</option>
                       </select>

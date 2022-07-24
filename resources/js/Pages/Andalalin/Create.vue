@@ -1,5 +1,5 @@
 <template>
-<Head title="Buat Pengajuan" />
+  <Head title="Buat Pengajuan" />
   <div
     class="
       min-h-screen
@@ -215,7 +215,12 @@
               </div>
               <div class="px-10">
                 <div class="mt-4">
-                  <jet-label for="surat_pemohon" value="Surat Permohonan" />
+                  <span class="inline-flex justify-center items-center">
+                    <jet-label for="surat_pemohon" value="Surat Permohonan" />
+                  </span>
+                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
+                    >*wajib</span
+                  >
                   <jet-input
                     id="surat_pemohon"
                     type="file"
@@ -224,11 +229,20 @@
                     required
                     autofocus
                   />
-                  <a href="/components/surat permohonan.docx" class="text-birmud text-sm underline">Download template surat permohonan</a>
+                  <a
+                    href="/components/surat permohonan.docx"
+                    class="text-birmud text-sm underline"
+                    >Download template surat permohonan</a
+                  >
                 </div>
 
                 <div class="mt-6">
-                  <jet-label for="ktp" value="Kartu Tanda Penduduk" />
+                  <span class="inline-flex justify-center items-center">
+                    <jet-label for="ktp" value="Kartu Tanda Penduduk" />
+                  </span>
+                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
+                    >*wajib</span
+                  >
                   <jet-input
                     id="ktp"
                     type="file"
@@ -240,7 +254,15 @@
                 </div>
 
                 <div class="mt-6">
-                  <jet-label for="sertifikat_tanah" value="Sertifikat Tanah" />
+                  <span class="inline-flex justify-center items-center">
+                    <jet-label
+                      for="sertifikat_tanah"
+                      value="Sertifikat Tanah"
+                    />
+                  </span>
+                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
+                    >*wajib</span
+                  >
                   <jet-input
                     id="sertifikat_tanah"
                     type="file"
@@ -252,7 +274,12 @@
                 </div>
 
                 <div class="mt-6">
-                  <jet-label for="ktr" value="Kesesuaian Tata Ruang" />
+                  <span class="inline-flex justify-center items-center">
+                    <jet-label for="ktr" value="Kesesuaian Tata Ruang" />
+                  </span>
+                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
+                    >*wajib</span
+                  >
                   <jet-input
                     id="ktr"
                     type="file"
@@ -264,7 +291,12 @@
                 </div>
 
                 <div class="mt-6">
-                  <jet-label for="rencana_tapak" value="Rencana Tapak" />
+                  <span class="inline-flex justify-center items-center">
+                    <jet-label for="rencana_tapak" value="Rencana Tapak" />
+                  </span>
+                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
+                    >*wajib</span
+                  >
                   <jet-input
                     id="rencana_tapak"
                     type="file"
@@ -276,7 +308,12 @@
                 </div>
 
                 <div class="mt-6">
-                  <jet-label for="desain_bangunan" value="Desain Bangunan" />
+                  <span class="inline-flex justify-center items-center">
+                    <jet-label for="desain_bangunan" value="Desain Bangunan" />
+                  </span>
+                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
+                    >*wajib</span
+                  >
                   <jet-input
                     id="desain_bangunan"
                     type="file"
@@ -328,21 +365,6 @@
                     autofocus
                   />
                 </div>
-
-                <p
-                  class="
-                    text-sm
-                    font-medium
-                    leading-6
-                    text-red-500 text-justify
-                    mx-auto
-                    mt-4
-                  "
-                >
-                  NB. Untuk pemohon yang melakukan pengajuan Standar Teknis
-                  tidak perlu mengirimkan file Company Profile Penyusun,
-                  Sertifikat Penyusun, dan Dokumen Andalalin.
-                </p>
 
                 <div class="my-4">
                   <vue-recaptcha

@@ -1,632 +1,228 @@
 <template>
-  <div
-    class="
-      min-h-screen
-      flex flex-col flex-auto flex-shrink-0
-      antialiased
-      bg-slate-50
-      text-black
-    "
-  >
-    <Sidebar />
+  <TransitionRoot as="template" :show="open">
+    <Dialog
+      as="div"
+      class="fixed z-10 inset-0 overflow-y-auto"
+      @close="open = false"
+    >
+      <div
+        class="
+          flex
+          items-end
+          justify-center
+          min-h-screen
+          pt-4
+          px-4
+          pb-20
+          text-center
+          sm:block sm:p-0
+        "
+      >
+        <TransitionChild
+          as="template"
+          enter="ease-out duration-300"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="ease-in duration-200"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
+        >
+          <DialogOverlay
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          />
+        </TransitionChild>
 
-    <div class="h-screen ml-14 md:ml-64">
-      <div class="max-w-3xl mx-auto sm:px-6 lg:px-2 py-6">
-        <div class="bg-abu shadow overflow-hidden sm:rounded-lg">
-          <div class="px-4 py-5 sm:px-6">
-            <h3 class="text-lg leading-6 font-medium text-white">
-              Informasi Pengajuan Dokumen Andalalin
-            </h3>
-            <p class="mt-1 max-w-2xl text-sm text-slate-50">
-              Detail Identitas dan Persyaratan.
-            </p>
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span
+          class="hidden sm:inline-block sm:align-middle sm:h-screen"
+          aria-hidden="true"
+          >&#8203;</span
+        >
+        <TransitionChild
+          as="template"
+          enter="ease-out duration-300"
+          enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          enter-to="opacity-100 translate-y-0 sm:scale-100"
+          leave="ease-in duration-200"
+          leave-from="opacity-100 translate-y-0 sm:scale-100"
+          leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        >
+          <div
+            class="
+              relative
+              my-auto
+              inline-block
+              align-bottom
+              bg-slate-50
+              rounded-lg
+              text-left
+              overflow-hidden
+              shadow-xl
+              transform
+              transition-all
+              sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
+            "
+          >
+            <div class="bg-white px-4 pt-5 pb-4 mx-auto sm:p-6 sm:pb-4">
+              <div class="mt-3 mx-auto text-center sm:mt-0">
+                <DialogTitle
+                  as="h3"
+                  class="
+                    text-lg
+                    leading-6
+                    font-extrabold
+                    text-slate-900
+                    uppercase
+                    font-roboto
+                  "
+                >
+                  Unggah Dokumen
+                </DialogTitle>
+                <div class="mt-2">
+                  <form @submit.prevent="update" enctype="multipart/form-data">
+
+                    <div class="mt-4">
+                      <jet-label for="surat_pemohon" value="Surat Permohonan"/>
+                      <file-input v-model="form.surat_pemohon" type="file" />
+                    </div>
+
+                    <div class="mt-4">
+                      <jet-label
+                        for="ktp"
+                        value="Kartu Tanda Penduduk"
+                      />
+                      <file-input v-model="form.ktp" type="file" />
+                    </div>
+
+                    <div class="mt-4">
+                      <jet-label for="sertifikat_tanah" value="Sertifikat Tanah"/>
+                      <file-input v-model="form.sertifikat_tanah" type="file" />
+                    </div>
+
+                    <div class="mt-4">
+                      <jet-label for="ktr" value="Kesesuaian Tata Ruang"/>
+                      <file-input v-model="form.ktr" type="file" />
+                    </div>
+
+                    <div class="mt-4">
+                      <jet-label
+                        for="rencana_tapak"
+                        value="Rencana Tapak"
+                      />
+                      <file-input v-model="form.rencana_tapak" type="file" />
+                    </div>
+
+                    <div class="mt-4">
+                      <jet-label for="desain_bangunan" value="Desain Bangunan"/>
+                      <file-input v-model="form.desain_bangunan" type="file" />
+                    </div>
+
+                    <div class="mt-4">
+                      <jet-label for="company_profile" value="Company Profile"/>
+                      <file-input v-model="form.company_profile" type="file" />
+                    </div>
+
+                    <div class="mt-4">
+                      <jet-label for="sertifikat_penyusun" value="Sertifikat Penyusun"/>
+                      <file-input v-model="form.sertifikat_penyusun" type="file" />
+                    </div>
+
+                    <div class="mt-4">
+                      <jet-label
+                        for="dokumen_andalalin"
+                        value="Dokumen Andalalin"
+                      />
+                      <file-input v-model="form.dokumen_andalalin" type="file" />
+                    </div>
+                    <button
+                      type="submit"
+                      class="
+                        mt-10
+                        inline-flex
+                        justify-center
+                        py-2
+                        px-4
+                        border border-transparent
+                        shadow-sm
+                        text-sm
+                        font-medium
+                        rounded-md
+                        text-white
+                        bg-biru
+                        hover:bg-blue-700
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-offset-2
+                        focus:ring-blue-500
+                      "
+                    >
+                      Simpan
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="border-t border-slate-900">
-            <dl>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">
-                  Nama Kategori
-                </dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.nama_kategori }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">
-                  Kode Registrasi
-                </dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.kode }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">Nama Lengkap</dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.nama_pemohon }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">
-                  Alamat Lengkap
-                </dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.alamat_pemohon }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">
-                  Nomor Telepon
-                </dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.no_tlp }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">
-                  Jenis / Nama Usaha
-                </dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.jenis_usaha }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">Alamat Usaha</dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.alamat_usaha }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">Luas Lahan</dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.luas_lahan }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">
-                  Luas Bangunan
-                </dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.luas_bangunan }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">Status Lahan</dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.status_lahan }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">Kapasitas</dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.kapasitas }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-slate-100
-                  px-4
-                  py-4
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">Email</dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  {{ andal.email_pemohon }}
-                </dd>
-              </div>
-              <div
-                class="
-                  bg-white
-                  px-4
-                  py-5
-                  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
-                "
-              >
-                <dt class="text-sm font-medium text-slate-500">Persyaratan</dt>
-                <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
-                  <ul
-                    role="list"
-                    class="
-                      border border-gray-200
-                      rounded-md
-                      divide-y divide-slate-200
-                    "
-                  >
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.surat_pemohon }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.surat_pemohon}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.ktp }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.ktp}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.sertifikat_tanah }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.sertifikat_tanah}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.ktr }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.ktr}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.rencana_tapak }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.rencana_tapak}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.desain_bangunan }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.desain_bangunan}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                      v-if="andal.company_profile != null"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.company_profile }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.company_profile}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                      v-if="andal.sertifikat_penyusun != null"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.sertifikat_penyusun }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.sertifikat_penyusun}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="
-                        pl-3
-                        pr-4
-                        py-3
-                        flex
-                        items-center
-                        justify-between
-                        text-sm
-                      "
-                      v-if="andal.dokumen_andalalin != null"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          {{ andal.dokumen_andalalin }}
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          :href="`/storage/${andal.dokumen_andalalin}`"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="
-                            font-medium
-                            text-indigo-600
-                            hover:text-indigo-500
-                          "
-                        >
-                          Lihat Selengkapnya
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
+        </TransitionChild>
       </div>
-    </div>
-  </div>
+    </Dialog>
+  </TransitionRoot>
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import { Link } from "@inertiajs/inertia-vue3";
-import Sidebar from "@/Layouts/Sidebar.vue";
-import JetInput from "@/Jetstream/Input.vue";
+import { ref } from "vue";
+import {
+  Dialog,
+  DialogOverlay,
+  DialogTitle,
+  TransitionChild,
+  TransitionRoot,
+} from "@headlessui/vue";
 import JetLabel from "@/Jetstream/Label.vue";
+import FileInput from "@/Shared/FileInput";
 
-export default defineComponent({
+export default {
   components: {
-    Link,
-    Sidebar,
-    JetInput,
+    Dialog,
+    DialogOverlay,
+    DialogTitle,
+    TransitionChild,
+    TransitionRoot,
     JetLabel,
+    FileInput,
   },
-
+  setup() {
+    const open = ref(true);
+    return {
+      open,
+    };
+  },
   props: {
-    andal: Object,
+    andalalin: Object,
   },
-});
+  remember: "form",
+  data() {
+    return {
+      form: this.$inertia.form({
+        _method: "put",
+        surat_pemohon: null,
+        ktp: null,
+        sertifikat_tanah: null,
+        ktr: null,
+        rencana_tapak: null,
+        desain_bangunan: null,
+        company_profile: null,
+        sertifikat_penyusun: null,
+        dokumen_andalalin: null,
+      }),
+    };
+  },
+  methods: {
+    update() {
+      this.form.post(`/redirects/${this.andalalin.id}`, {
+        onSuccess: () => this.form.reset("file"),
+      });
+    },
+  },
+};
 </script>

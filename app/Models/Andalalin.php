@@ -56,4 +56,9 @@ class Andalalin extends Model
     {
         return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, d F Y H:i');
     }
+
+    public function getTglTlAttribute()
+    {
+        return Carbon::parse($this->attributes['tgl_tl'])->translatedFormat('l, d F Y H:i');
+    }
 }
