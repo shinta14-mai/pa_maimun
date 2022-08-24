@@ -72,9 +72,9 @@
         </li>
         <li>
           <Link
-            :href="route('info.index')"
+            :href="route('informasi.index')"
             :class="
-              route().current('info.*')
+              route().current('informasi.*')
                 ? 'flex flex-row h-11 focus:outline-none border-l-4 border-transparent items-center px-2 py-1 text-white rounded-md bg-blue-600'
                 : 'flex flex-row h-11 focus:outline-none border-l-4 border-transparent items-center px-2 py-1 text-white transition-colors duration-200 transform rounded-md hover:bg-blue-600'
             "
@@ -102,9 +102,9 @@
         </li>
         <li>
           <Link
-            :href="route('andal.create')"
+            :href="route('pengajuan.create')"
             :class="
-              route().current('andal.*')
+              route().current('pengajuan.*')
                 ? 'flex flex-row h-11 focus:outline-none border-l-4 border-transparent items-center px-2 py-1 text-white rounded-md bg-blue-600'
                 : 'flex flex-row h-11 focus:outline-none border-l-4 border-transparent items-center px-2 py-1 text-white transition-colors duration-200 transform rounded-md hover:bg-blue-600'
             "

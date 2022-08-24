@@ -4,7 +4,8 @@
     <div class="form-input p-0" :class="{ error: errors.length }">
       <input ref="file" type="file" :accept="accept" class="hidden" @change="change" />
       <div v-if="!modelValue" class="p-2">
-        <button type="button" class="px-4 py-1 text-white text-xs font-medium bg-abu hover:bg-slate-700 rounded-sm" @click="browse">Choose File</button>
+        <button type="button" class="px-4 py-2 text-white text-xs font-medium bg-abu hover:bg-slate-700 rounded-md" @click="browse">Choose File</button>
+        <span class="ml-2">No file chosen</span>
       </div>
       <div v-else class="flex items-center justify-between p-2">
         <div class="flex-1 pr-1">

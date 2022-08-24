@@ -6,7 +6,7 @@
           <span class="inline-flex justify-center items-center">
             <jet-label for="search" value="Search" />
           </span>
-          <span class="text-slate-50 ml-2 text-sm tracking-wide truncate"
+          <span class="text-slate-900 ml-2 text-sm tracking-wide truncate"
             ><input
               id="search"
               type="text"
@@ -248,6 +248,12 @@
                           Terakhir diubah : {{ ad.updated_at }}
                         </div>
                         </div>
+                        <div
+                          class="text-slate-900 uppercase whitespace-no-wrap"
+                          v-if="ad.tracking_id == 10"
+                        >
+                          DRAFT
+                        </div>
                       </td>
                       <td
                         class="
@@ -271,7 +277,7 @@
                             hover:bg-slate-500
                             text-white
                             hover:text-slate-50
-                          " v-if="ad.tracking_id > 1"
+                          " v-if="ad.tracking_id > 1 && ad.tracking_id < 10"
                         >
                           <Link :href="`/andal/${ad.id}`">Details</Link>
                         </span>
@@ -301,7 +307,7 @@
                             text-white
                             hover:text-slate-900
                           "
-                          v-if="ad.tracking_id == 1 || ad.tracking_id == 2 || ad.tracking_id == 4 || ad.tracking_id == 9"
+                          v-if="ad.tracking_id == 1 || ad.tracking_id == 2 || ad.tracking_id == 4 || ad.tracking_id == 9 || ad.tracking_id == 10"
                         >
                           <Link :href="`/andal/${ad.id}/edit`">Status</Link>
                         </span>

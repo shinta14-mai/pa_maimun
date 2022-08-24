@@ -69,7 +69,7 @@
               text-xs
               md:text-base
             "
-            href="/andal/create"
+            href="/pengajuan/create"
             >Buat Pengajuan Sekarang</Link
           >
         </div>

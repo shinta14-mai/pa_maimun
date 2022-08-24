@@ -7,7 +7,9 @@ use App\Http\Controllers\AndalalinControllers;
 use App\Http\Controllers\PemohonControllers;
 use App\Http\Controllers\PengajuanControllers;
 use App\Http\Controllers\InfoControllers;
+use App\Http\Controllers\InformasiControllers;
 use App\Http\Controllers\TlControllers;
+use App\Http\Controllers\isDraftControllers;
 use App\Http\Controllers\BerkasControllers;
 use App\Models\Info;
 
@@ -36,9 +38,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->resource('info', InfoControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('andal', AndalalinControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('tl', TlControllers::class);
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->resource('info', InfoControllers::class);
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->resource('andal', AndalalinControllers::class);
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->resource('tl', TlControllers::class);
 Route::middleware(['auth:sanctum', 'verified'])->resource('redirects', PemohonControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('berkas', BerkasControllers::class);
-Route::middleware(['auth:sanctum', 'verified'])->resource('pengajuan', PengajuanControllers::class);
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->resource('berkas', BerkasControllers::class);
+Route::middleware(['auth:sanctum', 'verified', 'pemohon'])->resource('pengajuan', PengajuanControllers::class);
+Route::middleware(['auth:sanctum', 'verified', 'pemohon'])->resource('informasi', InformasiControllers::class);
+Route::middleware(['auth:sanctum', 'verified', 'pemohon'])->resource('isDraft', isDraftControllers::class);

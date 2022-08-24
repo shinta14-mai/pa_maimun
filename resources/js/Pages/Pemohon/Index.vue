@@ -23,7 +23,7 @@
             <div class="flex items-center justify-between">
               <div class="lg:ml-40 ml-10 space-x-8">
                 <Link
-                  href="/andal/create"
+                  href="/pengajuan/create"
                   class="
                     bg-slate-900
                     relative
@@ -66,7 +66,7 @@
             <span class="inline-flex justify-center items-center">
               <jet-label for="search" value="Search" />
             </span>
-            <span class="text-slate-50 ml-2 text-sm tracking-wide truncate"
+            <span class="text-slate-900 ml-2 text-sm tracking-wide truncate"
               ><input
                 id="search"
                 type="text"
@@ -220,7 +220,6 @@
                           class="
                             px-2
                             py-1
-                            inline-flex
                             text-sm
                             leading-5
                             font-semibold
@@ -232,6 +231,23 @@
                           "
                         >
                           <Link :href="`/redirects/${ad.id}`">Details</Link>
+                        </span> <br /><br />
+                        <span
+                          class="
+                            px-2
+                            py-1
+                            text-sm
+                            leading-5
+                            font-semibold
+                            rounded-lg
+                            bg-gold
+                            hover:bg-yellow-400
+                            text-black
+                            hover:text-slate-900
+                          "
+                          v-show="ad.isDraft == 1"
+                        >
+                          <Link :href="`/isDraft/${ad.id}/edit`">Lengkapi</Link>
                         </span>
                       </td>
                       <td
@@ -248,6 +264,9 @@
                         </p>
                         <p class="text-green-700 mb-2 whitespace-no-wrap">
                           {{ ad.tracking.keterangan }}
+                        </p>
+                        <p class="text-green-700 mb-2 whitespace-no-wrap" v-show="ad.tracking_id == 4">
+                          {{ ad.keterangan }}
                         </p>
                         <Link
                           class="text-blue-600 hover:text-blue-500 text-xs"

@@ -50,6 +50,7 @@ class Andalalin extends Model
         'undangan_rapat',
         'surat_pernyataan',
         'surat_rekom',
+        'isDraft'
     ];
 
     public function getUpdatedAtAttribute()

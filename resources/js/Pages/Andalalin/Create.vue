@@ -44,12 +44,12 @@
             data dan informasi tempat usaha kami adalah sebagai berikut:
           </p>
           <form @submit.prevent="submit" enctype="multipart/form-data">
-            <div class="mx-auto md:px-52 px-10">
+            <div class="mx-auto md:px-52 px-10 text-center">
               <jet-label
                 for="nama_kategori"
-                class="md:text-center"
+                class="md:text-center inline-flex"
                 value="Pilih Kategori"
-              />
+              /><span class="ml-2 text-xs text-red-400">*wajib diisi</span>
               <select
                 class="
                   form-control
@@ -64,6 +64,7 @@
                   w-full
                 "
                 v-model="ra.nama_kategori"
+                required
               >
                 <option value="Dokumen Andalalin">Dokumen Andalalin</option>
                 <option value="Rekomendasi Teknis">Rekomendasi Teknis</option>
@@ -73,14 +74,15 @@
             <div class="md:grid md:gap-4 md:grid-cols-2 md:justify-center">
               <div class="px-10">
                 <div class="mt-4">
-                  <jet-label for="nama_pemohon" value="Nama Pemohon" />
+                  <jet-label for="nama_pemohon" value="Nama Pemohon" class="inline-flex" />
+                  <span class="ml-2 text-xs text-red-400">*wajib diisi</span>
                   <jet-input
                     id="nama_pemohon"
                     type="text"
                     class="mt-1 block w-full"
                     v-model="ra.nama_pemohon"
-                    required
                     autofocus
+                    required
                   />
                 </div>
 
@@ -102,7 +104,6 @@
                       w-full
                     "
                     v-model="ra.alamat_pemohon"
-                    required
                     autofocus
                   ></textarea>
                 </div>
@@ -114,7 +115,6 @@
                     type="text"
                     class="mt-1 block w-full"
                     v-model="ra.no_tlp"
-                    required
                     autofocus
                   />
                 </div>
@@ -126,7 +126,6 @@
                     type="text"
                     class="mt-1 block w-full"
                     v-model="ra.jenis_usaha"
-                    required
                     autofocus
                   />
                 </div>
@@ -149,7 +148,6 @@
                       w-full
                     "
                     v-model="ra.alamat_usaha"
-                    required
                     autofocus
                   ></textarea>
                 </div>
@@ -161,7 +159,6 @@
                     type="number"
                     class="mt-1 block w-full"
                     v-model="ra.luas_lahan"
-                    required
                     autofocus
                   />
                 </div>
@@ -173,7 +170,6 @@
                     type="number"
                     class="mt-1 block w-full"
                     v-model="ra.luas_bangunan"
-                    required
                     autofocus
                   />
                 </div>
@@ -185,7 +181,6 @@
                     type="text"
                     class="mt-1 block w-full"
                     v-model="ra.status_lahan"
-                    required
                     autofocus
                   />
                 </div>
@@ -194,11 +189,11 @@
                   <jet-label for="kapasitas" value="Kapasitas Usaha" />
                   <jet-input
                     id="kapasitas"
-                    type="number"
-                    class="mt-1 block w-full"
+                    type="text"
+                    class="mt-1 block w-full text-sm"
                     v-model="ra.kapasitas"
-                    required
                     autofocus
+                    placeholder="contoh: 500 kamar, 100 kursi"
                   />
                 </div>
 
@@ -215,18 +210,12 @@
               </div>
               <div class="px-10">
                 <div class="mt-4">
-                  <span class="inline-flex justify-center items-center">
-                    <jet-label for="surat_pemohon" value="Surat Permohonan" />
-                  </span>
-                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
-                    >*wajib</span
-                  >
+                  <jet-label for="surat_pemohon" value="Surat Permohonan" />
                   <jet-input
                     id="surat_pemohon"
                     type="file"
                     class="mt-1 block w-full"
                     @change="setSP"
-                    required
                     autofocus
                   />
                   <a
@@ -237,94 +226,63 @@
                 </div>
 
                 <div class="mt-6">
-                  <span class="inline-flex justify-center items-center">
-                    <jet-label for="ktp" value="Kartu Tanda Penduduk" />
-                  </span>
-                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
-                    >*wajib</span
-                  >
+                  <jet-label for="ktp" value="Kartu Tanda Penduduk" class="inline-flex" />
+                  <span class="ml-2 text-xs text-red-400">*wajib diisi</span>
                   <jet-input
                     id="ktp"
                     type="file"
                     class="mt-1 block w-full"
                     @change="setKTP"
-                    required
                     autofocus
+                    required
                   />
                 </div>
 
                 <div class="mt-6">
-                  <span class="inline-flex justify-center items-center">
-                    <jet-label
-                      for="sertifikat_tanah"
-                      value="Sertifikat Tanah"
-                    />
-                  </span>
-                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
-                    >*wajib</span
-                  >
+                  <jet-label for="sertifikat_tanah" value="Sertifikat Tanah" />
                   <jet-input
                     id="sertifikat_tanah"
                     type="file"
                     class="mt-1 block w-full"
                     @change="setST"
-                    required
                     autofocus
                   />
                 </div>
 
                 <div class="mt-6">
-                  <span class="inline-flex justify-center items-center">
-                    <jet-label for="ktr" value="Kesesuaian Tata Ruang" />
-                  </span>
-                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
-                    >*wajib</span
-                  >
+                  <jet-label for="ktr" value="Kesesuaian Tata Ruang" />
                   <jet-input
                     id="ktr"
                     type="file"
                     class="mt-1 block w-full"
                     @change="setKTR"
-                    required
                     autofocus
                   />
                 </div>
 
                 <div class="mt-6">
-                  <span class="inline-flex justify-center items-center">
-                    <jet-label for="rencana_tapak" value="Rencana Tapak" />
-                  </span>
-                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
-                    >*wajib</span
-                  >
+                  <jet-label for="rencana_tapak" value="Rencana Tapak" />
                   <jet-input
                     id="rencana_tapak"
                     type="file"
                     class="mt-1 block w-full"
                     @change="setRT"
-                    required
                     autofocus
                   />
                 </div>
 
                 <div class="mt-6">
-                  <span class="inline-flex justify-center items-center">
-                    <jet-label for="desain_bangunan" value="Desain Bangunan" />
-                  </span>
-                  <span class="text-red-500 ml-2 text-xs tracking-wide truncate"
-                    >*wajib</span
-                  >
+                  <jet-label for="desain_bangunan" value="Desain Bangunan" />
                   <jet-input
                     id="desain_bangunan"
                     type="file"
                     class="mt-1 block w-full"
                     @change="setDB"
-                    required
                     autofocus
                   />
                 </div>
 
-                <div class="mt-6">
+                <div class="mt-6" v-show="ra.nama_kategori != 'Standar Teknis'">
                   <jet-label
                     for="company_profile"
                     value="Company Profile Penyusun"
@@ -338,7 +296,7 @@
                   />
                 </div>
 
-                <div class="mt-6">
+                <div class="mt-6" v-show="ra.nama_kategori != 'Standar Teknis'">
                   <jet-label
                     for="sertifikat_penyusun"
                     value="Sertifikat Penyusun"
@@ -352,7 +310,7 @@
                   />
                 </div>
 
-                <div class="mt-6">
+                <div class="mt-6" v-show="ra.nama_kategori != 'Standar Teknis'">
                   <jet-label
                     for="dokumen_andalalin"
                     value="Dokumen Andalalin"
@@ -365,6 +323,21 @@
                     autofocus
                   />
                 </div>
+
+                <div class="block mt-4">
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      v-model="ra.isDraft"
+                      true-value="1"
+                      false-value="0"
+                    />
+                    <span class="ml-2 text-sm text-gray-600">Apakah Anda ingin menyimpannya sebagai draft?</span>
+                  </label>
+                </div>
+                <p class="text-red-400 whitespace-no-wrap text-xs">
+                  *Abaikan jika data Anda sudah lengkap
+                </p>
 
                 <div class="my-4">
                   <vue-recaptcha
@@ -396,16 +369,11 @@
                       rounded-md
                       text-white
                       bg-blue-700
-                      hover:bg-blue-700
-                      focus:outline-none
-                      focus:ring-2
-                      focus:ring-offset-2
-                      focus:ring-blue-500
                       disabled:bg-gray-500
                     "
                     :disabled="!captcha_verified"
                   >
-                    Ajukan
+                    Simpan
                   </button>
                 </div>
               </div>
@@ -432,6 +400,7 @@ export default defineComponent({
     Sidebar,
     vueRecaptcha,
     Head,
+    Link,
   },
 
   data() {
@@ -459,6 +428,7 @@ export default defineComponent({
         company_profile: "",
         sertifikat_penyusun: "",
         dokumen_andalalin: "",
+        isDraft: 0,
       },
     };
   },
@@ -492,8 +462,9 @@ export default defineComponent({
       data.append("company_profile", this.ra.company_profile);
       data.append("sertifikat_penyusun", this.ra.sertifikat_penyusun);
       data.append("dokumen_andalalin", this.ra.dokumen_andalalin);
+      data.append("isDraft", this.ra.isDraft);
 
-      this.$inertia.post("/andal", data);
+      this.$inertia.post("/pengajuan", data);
     },
     setSP(e) {
       this.ra.surat_pemohon = e.target.files[0];

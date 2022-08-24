@@ -18,21 +18,9 @@ class InfoControllers extends Controller
      */
     public function index()
     {
-        $role = Auth::user()->role;
-
-        if($role == 'admin')
-        {
-            return Inertia::render('Info/Admin', [
-                'info' => Info::orderBy('id', 'ASC')->get()
-            ]);
-        }
-        else
-        {
-            return Inertia::render('Info/Pemohon', [
-                'info' => Info::orderBy('id', 'ASC')->get()
-            ]);
-
-        }
+        return Inertia::render('Info/Admin', [
+            'info' => Info::orderBy('id', 'ASC')->get()
+        ]);
     }
 
     /**

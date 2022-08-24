@@ -105,22 +105,21 @@
                         <option value="8">Surat Rekomendasi</option>
                       </select>
                     </div>
-                    <div class="mt-4" v-if="andalalin.tracking_id == 5">
-                      <jet-label for="undangan_rapat" value="Undangan Rapat" class="hidden"/>
+                    <div class="mt-4" v-show="form.tracking_id == 6">
+                      <jet-label for="undangan_rapat" value="Undangan Rapat"/>
                       <file-input v-model="form.undangan_rapat" type="file" />
                     </div>
 
-                    <div class="mt-4" v-if="andalalin.tracking_id == 6">
+                    <div class="mt-4" v-show="form.tracking_id == 7">
                       <jet-label
                         for="surat_pernyataan"
                         value="Surat Pernyataan"
-                        class="hidden"
                       />
                       <file-input v-model="form.surat_pernyataan" type="file" />
                     </div>
 
-                    <div class="mt-4" v-if="andalalin.tracking_id == 7">
-                      <jet-label for="surat_rekom" value="Surat Rekomendasi" class="hidden"/>
+                    <div class="mt-4" v-show="form.tracking_id == 8">
+                      <jet-label for="surat_rekom" value="Surat Rekomendasi"/>
                       <file-input v-model="form.surat_rekom" type="file" />
                     </div>
                     <button

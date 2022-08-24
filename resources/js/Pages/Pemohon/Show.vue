@@ -60,6 +60,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.nama_pemohon != null"
               >
                 <dt class="text-sm font-medium text-slate-500">Nama Lengkap</dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
@@ -73,6 +74,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.alamat_pemohon != null"
               >
                 <dt class="text-sm font-medium text-slate-500">
                   Alamat Lengkap
@@ -88,6 +90,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.no_tlp != null"
               >
                 <dt class="text-sm font-medium text-slate-500">
                   Nomor Telepon
@@ -103,6 +106,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.jenis_usaha != null"
               >
                 <dt class="text-sm font-medium text-slate-500">
                   Jenis / Nama Usaha
@@ -118,6 +122,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.alamat_usaha != null"
               >
                 <dt class="text-sm font-medium text-slate-500">Alamat Usaha</dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
@@ -131,6 +136,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.luas_lahan != null"
               >
                 <dt class="text-sm font-medium text-slate-500">Luas Lahan</dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
@@ -144,6 +150,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.luas_bangunan != null"
               >
                 <dt class="text-sm font-medium text-slate-500">
                   Luas Bangunan
@@ -159,6 +166,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.status_lahan != null"
               >
                 <dt class="text-sm font-medium text-slate-500">Status Lahan</dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
@@ -172,6 +180,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.kapasitas != null"
               >
                 <dt class="text-sm font-medium text-slate-500">Kapasitas</dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
@@ -185,6 +194,7 @@
                   py-4
                   sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
                 "
+                v-show="andal.email_pemohon != null"
               >
                 <dt class="text-sm font-medium text-slate-500">Email</dt>
                 <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
@@ -219,6 +229,7 @@
                         justify-between
                         text-sm
                       "
+                      v-show="andal.surat_pemohon != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -262,6 +273,7 @@
                         justify-between
                         text-sm
                       "
+                      v-show="andal.ktp != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -305,6 +317,7 @@
                         justify-between
                         text-sm
                       "
+                      v-show="andal.sertifikat_tanah != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -348,6 +361,7 @@
                         justify-between
                         text-sm
                       "
+                      v-show="andal.ktr != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -391,6 +405,7 @@
                         justify-between
                         text-sm
                       "
+                      v-show="andal.rencana_tapak != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -434,6 +449,7 @@
                         justify-between
                         text-sm
                       "
+                      v-show="andal.desain_bangunan != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -477,7 +493,7 @@
                         justify-between
                         text-sm
                       "
-                      v-if="andal.company_profile != null"
+                      v-show="andal.company_profile != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -521,7 +537,7 @@
                         justify-between
                         text-sm
                       "
-                      v-if="andal.sertifikat_penyusun != null"
+                      v-show="andal.sertifikat_penyusun != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg
@@ -565,7 +581,7 @@
                         justify-between
                         text-sm
                       "
-                      v-if="andal.dokumen_andalalin != null"
+                      v-show="andal.dokumen_andalalin != null"
                     >
                       <div class="w-0 flex-1 flex items-center">
                         <svg

@@ -97,15 +97,15 @@
                         v-model="form.tracking_id"
                       >
                         <option value="1" disabled>Pengajuan Baru</option>
-                        <option value="2">Konfirmasi Pengajuan</option>
+                        <option value="2" v-show="andal.tracking_id != 9 && andal.tracking_id != 10">Konfirmasi Pengajuan</option>
                         <option value="3">Diterima</option>
                         <option value="4">Ditolak</option>
                       </select>
                     </div>
-                    <div class="mt-8" v-if="andal.tracking_id == 2">
+                    <div class="mt-8" v-show="form.tracking_id == 4">
                       <jet-label
                         for="keterangan"
-                        value="Tambahkan Keterangan Jika Pengajuan Ditolak"
+                        value="Tambahkan Keterangan Penolakan"
                       />
                       <jet-input
                         id="keterangan"

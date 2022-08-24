@@ -196,7 +196,7 @@ export default {
     return {
       form: this.$inertia.form({
         _method: "put",
-        panduan: null,
+        panduan: this.info.panduan,
         kriteria: null,
         permohonan: null,
         rekom: null,
